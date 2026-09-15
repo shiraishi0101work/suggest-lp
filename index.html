@@ -60,6 +60,12 @@ ul{list-style:none}
 .header-tel a{font-family:'Poppins',sans-serif;font-size:1rem;font-weight:700;color:var(--navy)}
 .header-cta{display:inline-block;background:linear-gradient(135deg,var(--cta),#ff5733);color:#fff;font-size:.78rem;font-weight:700;padding:10px 28px;border-radius:50px;box-shadow:0 4px 16px rgba(227,57,0,.2)}
 
+/* ===== HERO BADGES ===== */
+.hero-badges{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap}
+.hero-badge{display:inline-block;font-size:.88rem;font-weight:800;padding:10px 22px;border-radius:4px;letter-spacing:.05em;line-height:1;transform:rotate(-2deg)}
+.hero-badge.red{background:var(--cta);color:#fff;box-shadow:2px 2px 0 rgba(0,0,0,.15)}
+.hero-badge.blue{background:var(--royal);color:#fff;box-shadow:2px 2px 0 rgba(0,0,0,.15)}
+
 /* ===== HERO ===== */
 .hero{padding:160px 0 140px;background:linear-gradient(170deg,#f5f7fa 0%,#edf3ff 30%,#e8f0fb 60%,#e0ecf6 100%);position:relative;overflow:hidden}
 .hero::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(69,165,142,.1) 0%,transparent 65%);pointer-events:none}
@@ -96,13 +102,15 @@ ul{list-style:none}
 .mq-neu{background:rgba(0,0,0,.04);color:#757575;border:1px solid rgba(0,0,0,.08)}
 
 /* ===== TRUST ===== */
-.trust{padding:56px 0;background:var(--white)}
-.trust-grid{display:flex;justify-content:center;gap:64px;flex-wrap:wrap}
-.trust-item{display:flex;align-items:center;gap:16px}
-.trust-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--royal));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(36,36,36,.12)}
-.trust-icon svg{width:22px;height:22px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.trust-text{font-size:.8rem;font-weight:600;color:var(--sub);line-height:1.4}
-.trust-text span{display:block;font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:900;color:var(--navy);letter-spacing:-.02em}
+.trust{padding:0;background:linear-gradient(135deg,#1b3a5c 0%,#24486e 50%,#0a6fa8 100%);position:relative;overflow:hidden}
+.trust::before{display:none}
+.trust-inner{display:flex;justify-content:center;align-items:center;gap:80px;padding:52px 0;flex-wrap:wrap;position:relative;z-index:1}
+.trust-tag{display:flex;align-items:baseline;gap:8px}
+.trust-tag-label{display:none}
+.trust-tag-value{font-size:2.8rem;font-weight:900;color:#fff;letter-spacing:.06em;text-shadow:0 2px 20px rgba(0,0,0,.3);border-bottom:4px solid var(--cta);padding-bottom:8px}
+.trust-tag-value .price{font-family:'Poppins',sans-serif;font-size:4rem;color:#fff}
+.trust-tag-value .unit{font-size:1.2rem;font-weight:600;opacity:.8}
+.trust-divider{width:1px;height:64px;background:linear-gradient(180deg,transparent,rgba(255,255,255,.35),transparent)}
 
 /* ===== ABOUT ===== */
 .about{padding:140px 0;background:linear-gradient(180deg,var(--white) 0%,var(--off-white) 100%)}
@@ -300,6 +308,29 @@ ul{list-style:none}
 .form-submit{text-align:center}
 .form-submit button{background:linear-gradient(135deg,var(--cta),#ff5733);color:#fff;font-size:1.05rem;font-weight:700;padding:20px 64px;border-radius:60px;border:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif;box-shadow:0 8px 32px rgba(227,57,0,.25),inset 0 1px 0 rgba(255,255,255,.2)}
 
+/* ===== PRICING ===== */
+.pricing{padding:140px 0;background:linear-gradient(180deg,var(--off-white),var(--white))}
+.pricing-card{max-width:640px;margin:0 auto;background:#fff;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);border:2px solid var(--royal);overflow:hidden}
+.pricing-header{background:linear-gradient(135deg,#1b3a5c,#24486e);padding:32px;text-align:center;color:#fff}
+.pricing-header .pricing-badge{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.15em;background:var(--cta);color:#fff;padding:6px 20px;border-radius:4px;margin-bottom:16px}
+.pricing-header h3{font-size:1.2rem;font-weight:700;margin-bottom:8px}
+.pricing-price{font-family:'Poppins',sans-serif;font-size:3.4rem;font-weight:900;line-height:1.1}
+.pricing-price small{font-size:1rem;font-weight:600}
+.pricing-price .tax{font-size:.78rem;font-weight:400;opacity:.7;margin-left:4px}
+.pricing-body{padding:32px}
+.pricing-features{display:flex;flex-direction:column;gap:14px;margin-bottom:28px}
+.pricing-features li{display:flex;align-items:center;gap:12px;font-size:.92rem;color:var(--body);font-weight:500}
+.pricing-features li::before{content:'';width:20px;height:20px;border-radius:50%;background:var(--royal);flex-shrink:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");background-size:12px;background-repeat:no-repeat;background-position:center}
+.pricing-note{font-size:.78rem;color:var(--sub);text-align:center;line-height:1.8}
+.pricing-cta{text-align:center;margin-top:28px}
+
+/* ===== COMPANY ===== */
+.company{padding:100px 0;background:var(--white)}
+.company-table{max-width:780px;margin:0 auto;border-collapse:collapse;width:100%}
+.company-table th,.company-table td{padding:22px 24px;font-size:.95rem;border-bottom:1px solid var(--border);text-align:left;line-height:1.8}
+.company-table th{width:160px;font-weight:700;color:var(--heading);background:var(--off-white);white-space:nowrap}
+.company-table td{color:var(--body)}
+
 /* ===== PRIVACY MODAL ===== */
 .pp-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2000;align-items:center;justify-content:center}
 .pp-modal-overlay.open{display:flex}
@@ -401,11 +432,10 @@ ul{list-style:none}
 <!-- TRUST -->
 <section class="trust">
   <div class="container">
-    <div class="trust-grid">
-      <div class="trust-item ao"><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="trust-text">対策実績<span>200社+</span></div></div>
-      <div class="trust-item ao ao-d1"><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="trust-text">顧客満足度<span>82%</span></div></div>
-      <div class="trust-item ao ao-d2"><div class="trust-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="trust-text">即日対応<span>営業日</span></div></div>
-      <div class="trust-item ao ao-d3"><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><div class="trust-text">上場企業<span>導入多数</span></div></div>
+    <div class="trust-inner">
+      <div class="trust-tag"><span class="trust-tag-label">Industry Lowest Price</span><span class="trust-tag-value">業界最安値 <span class="price">50,000</span><span class="unit">円/月～</span></span></div>
+      <div class="trust-divider"></div>
+      <div class="trust-tag"><span class="trust-tag-label">Free Consultation</span><span class="trust-tag-value">無料相談対応</span></div>
     </div>
   </div>
 </section>
@@ -465,6 +495,32 @@ ul{list-style:none}
           <div class="risk-item ao ao-d1"><span class="risk-num">02</span><div><h3>取引先・金融機関からの信用が失墜</h3><p>企業調査でサジェストは必ず確認されます。融資審査・取引開始時の判断に影響します。</p></div></div>
           <div class="risk-item ao ao-d2"><span class="risk-num">03</span><div><h3>対策コストが雪だるま式に増大</h3><p>早期対策なら短期間・低コストで解決できたものが、放置により長期化・高額化します。</p></div></div>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="pricing" id="pricing">
+  <div class="container">
+    <div class="text-center"><p class="sec-label ao">Pricing</p><h2 class="sec-title ao">業界最安値の<span class="em">料金プラン</span></h2><p class="sec-lead ao">高品質なサジェスト対策を、業界最安値でご提供します。</p></div>
+    <div class="pricing-card ao">
+      <div class="pricing-header">
+        <span class="pricing-badge">業界最安値</span>
+        <h3>サジェスト対策プラン</h3>
+        <div class="pricing-price">50,000<small>円/月～</small><span class="tax">（税抜）</span></div>
+      </div>
+      <div class="pricing-body">
+        <ul class="pricing-features">
+          <li>初期費用なし</li>
+          <li>Google / Yahoo! / Bing 対応</li>
+          <li>サジェスト・関連キーワード対策</li>
+          <li>対策状況レポート付き</li>
+          <li>専任担当者によるサポート</li>
+          <li>無料調査・ご相談</li>
+        </ul>
+        <p class="pricing-note">※ 対策キーワード数や難易度により料金は変動します。<br>まずは無料相談にて最適なプランをご提案いたします。</p>
+        <div class="pricing-cta"><a href="#contact" class="btn-cta">無料相談を申し込む</a></div>
       </div>
     </div>
   </div>
@@ -570,7 +626,7 @@ ul{list-style:none}
         <thead><tr><th>比較項目</th><th>一般的な業者</th><th>トライポット</th></tr></thead>
         <tbody>
           <tr><td>対応スピード</td><td>1~2週間</td><td>最短24時間</td></tr>
-          <tr><td>料金体系</td><td>月額固定が多い</td><td>成果報酬型あり</td></tr>
+          <tr><td>料金体系</td><td>月額固定が多い</td><td>月額50,000円～（業界最安値）</td></tr>
           <tr><td>無料調査</td><td><span class="cc mid">△</span></td><td><span class="cc ok">&#10003;</span></td></tr>
           <tr><td>対策の見える化</td><td><span class="cc no">x</span></td><td><span class="cc ok">&#10003;</span></td></tr>
           <tr><td>対応検索エンジン</td><td>Google のみ</td><td>Google / Yahoo! / Bing</td></tr>
@@ -624,7 +680,7 @@ ul{list-style:none}
     <div class="text-center"><p class="sec-label ao">FAQ</p><h2 class="sec-title ao">よくある<span class="em">ご質問</span></h2><p class="sec-lead ao">お客様からよくいただくご質問にお答えします。</p></div>
     <div class="faq-list">
       <div class="faq-item ao"><button class="faq-question"><span class="faq-q-label">Q</span><span>対策にはどのくらいの期間がかかりますか?</span><span class="faq-toggle"></span></button><div class="faq-answer"><div class="faq-answer-inner"><span class="al">A.</span>通常は2週間~2ヶ月程度で効果が現れます（対策内容による）。</div></div></div>
-      <div class="faq-item ao"><button class="faq-question"><span class="faq-q-label">Q</span><span>費用はどのくらいかかりますか?</span><span class="faq-toggle"></span></button><div class="faq-answer"><div class="faq-answer-inner"><span class="al">A.</span>キーワードの難易度や数によって変動します。成果報酬型プランもご用意しておりますので、まずは無料相談にてお見積りをご確認ください。</div></div></div>
+      <div class="faq-item ao"><button class="faq-question"><span class="faq-q-label">Q</span><span>費用はどのくらいかかりますか?</span><span class="faq-toggle"></span></button><div class="faq-answer"><div class="faq-answer-inner"><span class="al">A.</span>月額50,000円（税抜）～で、業界最安値でご提供しております。キーワードの難易度や数によって変動しますので、まずは無料相談にてお見積りをご確認ください。</div></div></div>
       <div class="faq-item ao"><button class="faq-question"><span class="faq-q-label">Q</span><span>他社で対策中ですが、乗り換えは可能ですか?</span><span class="faq-toggle"></span></button><div class="faq-answer"><div class="faq-answer-inner"><span class="al">A.</span>はい、可能です。現在の対策状況を確認した上で、スムーズに切り替え対応いたします。</div></div></div>
       <div class="faq-item ao"><button class="faq-question"><span class="faq-q-label">Q</span><span>対策後にサジェストが再表示されることはありますか?</span><span class="faq-toggle"></span></button><div class="faq-answer"><div class="faq-answer-inner"><span class="al">A.</span>再表示の可能性はゼロではありません。そのため継続監視サービスをご用意しており、再発時は速やかに対応いたします。</div></div></div>
       <div class="faq-item ao"><button class="faq-question"><span class="faq-q-label">Q</span><span>Googleのガイドラインに違反しませんか?</span><span class="faq-toggle"></span></button><div class="faq-answer"><div class="faq-answer-inner"><span class="al">A.</span>当社の対策手法はGoogleのガイドラインに準拠した安全な方法を採用しております。</div></div></div>
@@ -640,6 +696,20 @@ ul{list-style:none}
     <p>無料調査でまずは現状を把握。最適な対策をご提案いたします。</p>
     <a href="#contact" class="btn-cta-white">無料相談を申し込む</a>
     <span class="cta-note">※ 24時間受付 / 最短即日対応</span>
+  </div>
+</section>
+
+<!-- COMPANY -->
+<section class="company" id="company">
+  <div class="container">
+    <div class="text-center"><p class="sec-label ao">Company</p><h2 class="sec-title ao">会社概要</h2></div>
+    <table class="company-table ao">
+      <tr><th>会社名</th><td>トライポット株式会社（TRIPOT .Inc）</td></tr>
+      <tr><th>設立</th><td>2025年12月</td></tr>
+      <tr><th>資本金</th><td>1,000,000円</td></tr>
+      <tr><th>代表者</th><td>柏樹 久美子</td></tr>
+      <tr><th>所在地</th><td>〒460-0007 愛知県名古屋市中区新栄1丁目2-5 HARVEY 栄EAST 6階</td></tr>
+    </table>
   </div>
 </section>
 
@@ -707,7 +777,7 @@ ul{list-style:none}
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
-    <div class="footer-inner"><div class="footer-company"><strong>TRIPOT</strong>トライポット株式会社<br>〒460-0007 愛知県名古屋市中区新栄1丁目2-5 HARVEY 栄EAST 6階</div><div class="footer-links"><a href="#" class="openPrivacyFooter">プライバシーポリシー</a><a href="#">会社概要</a></div></div>
+    <div class="footer-inner"><div class="footer-company"><strong>TRIPOT</strong>トライポット株式会社<br>〒460-0007 愛知県名古屋市中区新栄1丁目2-5 HARVEY 栄EAST 6階</div><div class="footer-links"><a href="#" class="openPrivacyFooter">プライバシーポリシー</a><a href="#company">会社概要</a></div></div>
     <div class="footer-bottom"><p class="footer-copy">&copy; 2026 TRIPOT Inc. All Rights Reserved.</p></div>
   </div>
 </footer>
