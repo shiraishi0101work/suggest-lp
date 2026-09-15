@@ -364,22 +364,103 @@ ul{list-style:none}
 
 /* ===== RESPONSIVE ===== */
 @media(max-width:768px){
-  .hero{padding:120px 0 100px}
+  .container{padding:0 20px}
+  .hero{padding:120px 0 80px}
   .hero-grid{grid-template-columns:1fr;gap:40px}.hero-image{display:none!important}
-  .hero h1{font-size:2rem}.sec-title{font-size:1.8rem}
-  .hero-stats{flex-wrap:wrap;gap:10px}.hero-stat{padding:16px 12px}.hero-stat-num{font-size:1.6rem}
+  .hero h1{font-size:1.8rem}.hero h1 .sub-line{font-size:.85rem}
+  .hero-sub{font-size:.92rem}
+  .sec-title{font-size:1.6rem}
+  .sec-lead{font-size:.95rem;margin-bottom:48px}
+  .hero-stats{flex-wrap:wrap;gap:10px}.hero-stat{padding:16px 12px;flex:1 1 calc(33% - 10px)}.hero-stat-num{font-size:1.5rem}
   .hero-cta-group{flex-direction:column}.btn-cta,.btn-ghost,.btn-cta-white{width:100%;justify-content:center;padding:18px 24px}
-  .trust-grid{gap:24px}.trust-item{flex-direction:column;text-align:center}
-  .about-grid,.risk-grid,.sol-block,.sol-block.rev,.comp-grid,.contact-wrap{grid-template-columns:1fr;direction:ltr;gap:40px}
-  .trouble-grid,.str-grid,.str-last,.voice-grid,.numbers-grid{grid-template-columns:1fr}
-  .ba-case-body{grid-template-columns:1fr}.ba-arrow{width:100%;height:56px}
-  .numbers-grid{grid-template-columns:repeat(2,1fr)}.numbers-num{font-size:2rem}
-  .contact-box{padding:32px 20px}.form-row{grid-template-columns:1fr}
+
+  /* Trust帯 */
+  .trust-inner{flex-direction:column;gap:24px;padding:36px 20px}
+  .trust-tag{flex-direction:row;gap:6px;flex-wrap:wrap;justify-content:center}
+  .trust-tag-value{font-size:1.8rem;text-align:center}
+  .trust-tag-value .price{font-size:2.6rem}
+  .trust-divider{width:60%;height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.3),transparent)}
+
+  /* About / Risk / Solution */
+  .about{padding:80px 0}.about-grid,.risk-grid,.sol-block,.sol-block.rev,.comp-grid,.contact-wrap{grid-template-columns:1fr;direction:ltr;gap:32px}
+  .about-text h3{font-size:1.6rem}
+  .risk{padding:80px 0}
+  .solution{padding:80px 0}.sol-text h3{font-size:1.5rem}
+  .sol-blocks{gap:64px}
+
+  /* Trouble */
+  .trouble{padding:80px 0}
+  .trouble-grid,.str-grid,.str-last,.voice-grid{grid-template-columns:1fr}
+
+  /* Before/After */
+  .ba{padding:80px 0}
+  .ba-case-body{grid-template-columns:1fr}
+  .ba-arrow{width:100%;height:56px}
+  .ba-case-header{padding:16px 20px}
+  .ba-side{padding:24px 20px}
+  .ba-result{padding:16px 20px;gap:16px}
+
+  /* Numbers */
+  .numbers{padding:60px 0}
+  .numbers-grid{grid-template-columns:repeat(2,1fr);gap:20px}
+  .numbers-num{font-size:2rem}
+
+  /* Strength */
+  .strength{padding:80px 0}
+
+  /* Comparison */
+  .comparison{padding:80px 0}
+  .comp-table thead th{padding:14px 10px;font-size:.78rem}
+  .comp-table tbody td{padding:14px 10px;font-size:.82rem}
+
+  /* Pricing */
+  .pricing{padding:80px 0}
+  .pricing-header{padding:24px 20px}
+  .pricing-price{font-size:2.4rem}
+  .pricing-price small{font-size:.85rem}
+  .pricing-body{padding:24px 20px}
+
+  /* Flow */
+  .flow-step{padding:24px 20px}
+
+  /* FAQ */
+  .faq-question{padding:16px 20px}
+
+  /* Company */
+  .company{padding:60px 0}
+  .company-table th,.company-table td{padding:14px 16px;font-size:.85rem;display:block;width:100%}
+  .company-table th{background:var(--off-white);border-bottom:none;padding-bottom:4px}
+  .company-table td{padding-top:4px}
+
+  /* Contact */
+  .contact{padding:80px 0}
+  .contact-box{padding:28px 20px}
+  .form-row{grid-template-columns:1fr}
+  .contact-info h2{font-size:1.6rem}
+
+  /* CTA Banner */
+  .cta-banner{padding:60px 0}
+  .cta-banner h2{font-size:1.4rem}
+
+  /* Modal */
+  .pp-modal{width:95%;max-height:85vh}
+  .pp-modal-header{padding:18px 20px}
+  .pp-modal-body{padding:20px;font-size:.82rem}
+
+  /* Header / Footer */
   .header-tel{display:none}
   .footer-inner{flex-direction:column;text-align:center}.footer-links{justify-content:center}
+  .footer-company{font-size:.75rem}
+
+  /* Floating CTA */
   .floating-cta{bottom:14px;right:14px;left:14px}.floating-cta a{justify-content:center}
+
+  /* Marquee */
   .mq-item{font-size:.72rem;padding:6px 14px}
-  .cta-banner h2{font-size:1.5rem}
+
+  /* Misc */
+  .about-kw-group{justify-content:center}
+  .sol-targets{justify-content:center}
 }
 </style>
 </head>
