@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サジェスト汚染対策 | トライポット株式会社</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#242424;--royal:#009ee3;--royal-light:#33b5eb;
+  --gold:#45a58e;--gold-light:#5fbda6;
+  --cta:#e33900;--cta-hover:#c93000;
+  --white:#FFFFFF;--off-white:#f9fafb;--light-blue:#edf3ff;--pale-blue:#e0ecfa;
+  --heading:#242424;--body:#3A3F4B;--sub:#757575;--muted:#9CA3AF;
+  --border:rgba(36,36,36,.08);--glass:rgba(255,255,255,.55);--glass-border:rgba(255,255,255,.25);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.04);--shadow-md:0 8px 32px rgba(0,0,0,.06);--shadow-lg:0 20px 60px rgba(0,0,0,.08);
+  --radius:16px;--radius-lg:24px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Noto Sans JP','Poppins',sans-serif;color:var(--body);line-height:1.9;background:var(--white);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+input,textarea,select{-webkit-user-select:text;user-select:text}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+.text-center{text-align:center}
+
+/* === TYPOGRAPHY === */
+.sec-label{font-family:'Poppins',sans-serif;font-weight:700;font-size:.72rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;display:inline-block}
+.sec-title{font-size:2.8rem;font-weight:900;color:var(--heading);line-height:1.4;margin-bottom:20px;letter-spacing:-.02em}
+.sec-title .em{background:linear-gradient(135deg,var(--royal),var(--royal-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.sec-title .gd{color:var(--gold)}
+.sec-lead{font-size:1.1rem;color:var(--sub);margin-bottom:72px;line-height:2;max-width:680px;margin-left:auto;margin-right:auto}
+
+/* === ANIMATION (disabled) === */
+.ao,.ao-d1,.ao-d2,.ao-d3,.ao-d4{}
+
+/* === BUTTONS === */
+.btn-cta{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--cta),#ff5733);color:#fff;font-size:1.05rem;font-weight:700;padding:20px 48px;border-radius:60px;border:none;cursor:pointer;box-shadow:0 8px 32px rgba(227,57,0,.28),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-cta::after{content:'';display:inline-block;width:8px;height:8px;border-right:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:var(--glass);backdrop-filter:blur(12px);color:var(--navy);font-size:.92rem;font-weight:600;padding:16px 36px;border-radius:60px;border:1px solid var(--glass-border);cursor:pointer}
+.btn-cta-white{display:inline-flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--cta),#ff5733);color:#fff;font-size:1.05rem;font-weight:700;padding:20px 48px;border-radius:60px;border:none;cursor:pointer;box-shadow:0 8px 32px rgba(227,57,0,.3),inset 0 1px 0 rgba(255,255,255,.25)}
+.btn-cta-white::after{content:'';display:inline-block;width:8px;height:8px;border-right:2.5px solid #fff;border-bottom:2.5px solid #fff;transform:rotate(-45deg)}
+
+/* === PLACEHOLDER === */
+.placeholder{background:linear-gradient(135deg,var(--light-blue),var(--pale-blue));border:2px dashed rgba(0,158,227,.2);border-radius:var(--radius);display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--royal);font-size:.82rem;font-weight:600;text-align:center;line-height:1.6;overflow:hidden;position:relative}
+.placeholder .ph-label{font-family:'Poppins',sans-serif;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-top:8px}
+.placeholder .ph-size{font-family:'Poppins',sans-serif;font-size:.6rem;color:var(--muted);margin-top:2px}
+
+/* ===== HEADER ===== */
+.header{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:16px 0;background:rgba(255,255,255,.72);backdrop-filter:blur(20px);border-bottom:1px solid rgba(36,36,36,.06);transition:padding .3s}
+.header.scrolled{padding:10px 0}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Poppins',sans-serif;font-weight:800;font-size:1.4rem;color:var(--navy);letter-spacing:-.02em}
+.logo small{display:block;font-family:'Noto Sans JP',sans-serif;font-size:.58rem;font-weight:400;color:var(--sub)}
+.header-right{display:flex;align-items:center;gap:24px}
+.header-tel{text-align:right}
+.header-tel-note{font-size:.56rem;color:var(--muted);display:block}
+.header-tel a{font-family:'Poppins',sans-serif;font-size:1rem;font-weight:700;color:var(--navy)}
+.header-cta{display:inline-block;background:linear-gradient(135deg,var(--cta),#ff5733);color:#fff;font-size:.78rem;font-weight:700;padding:10px 28px;border-radius:50px;box-shadow:0 4px 16px rgba(227,57,0,.2)}
+
+/* ===== HERO ===== */
+.hero{padding:160px 0 140px;background:linear-gradient(170deg,#f5f7fa 0%,#edf3ff 30%,#e8f0fb 60%,#e0ecf6 100%);position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-200px;right:-200px;width:700px;height:700px;background:radial-gradient(circle,rgba(69,165,142,.1) 0%,transparent 65%);pointer-events:none}
+.hero::after{content:'';position:absolute;bottom:-100px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(0,158,227,.06) 0%,transparent 65%);pointer-events:none}
+.hero-grid{position:relative;z-index:2}
+.hero-content{max-width:560px;position:relative;z-index:3}
+.hero-label{display:inline-block;font-family:'Poppins',sans-serif;font-size:.68rem;font-weight:600;color:var(--gold);background:rgba(69,165,142,.1);border:1px solid rgba(69,165,142,.25);padding:8px 24px;border-radius:50px;margin-bottom:28px;letter-spacing:.2em}
+.hero h1{font-size:3.2rem;font-weight:900;color:var(--heading);line-height:1.45;margin-bottom:24px;letter-spacing:-.03em}
+.hero h1 em{font-style:normal;background:linear-gradient(135deg,var(--royal),var(--royal-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero h1 .sub-line{display:block;font-size:1rem;font-weight:500;color:var(--sub);-webkit-text-fill-color:var(--sub);margin-top:12px;letter-spacing:0}
+.hero-sub{font-size:1.05rem;color:var(--sub);line-height:2.1;margin-bottom:44px}
+.hero-stats{display:flex;gap:20px;margin-bottom:48px}
+.hero-stat{text-align:center;background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:var(--radius);padding:24px;flex:1;box-shadow:var(--shadow-sm)}
+.hero-stat-num{font-family:'Poppins',sans-serif;font-size:2.4rem;font-weight:900;background:linear-gradient(135deg,var(--navy),var(--royal));-webkit-background-clip:text;-webkit-text-fill-color:transparent;line-height:1.1}
+.hero-stat-num small{font-size:.85rem;font-weight:700}
+.hero-stat-label{font-size:.7rem;color:var(--muted);margin-top:6px;letter-spacing:.05em}
+.hero-cta-group{display:flex;gap:16px;flex-wrap:wrap}
+.hero-image{position:absolute;top:0;right:0;width:55%;height:100%;overflow:hidden}
+.hero-placeholder{width:100%;aspect-ratio:16/10;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg)}
+.hero-image-wrap{position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center}
+.hero-image-wrap img{width:100%;height:100%;object-fit:cover;object-position:center;display:block}
+.hero-image-wrap::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(240,245,252,1) 0%,rgba(240,245,252,.85) 15%,rgba(240,245,252,.3) 35%,transparent 55%);pointer-events:none}
+.hero-image-glow{display:none}
+
+/* ===== MARQUEE ===== */
+.marquee-section{padding:24px 0;background:linear-gradient(135deg,#f0f4f8,#e8eef5);overflow:hidden;border-top:1px solid rgba(0,0,0,.06);border-bottom:1px solid rgba(0,0,0,.06)}
+.marquee-track{display:flex;width:max-content;animation:mq 40s linear infinite}
+.marquee-track.rev{animation:mq-rev 45s linear infinite}
+@keyframes mq{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+@keyframes mq-rev{0%{transform:translateX(-50%)}100%{transform:translateX(0)}}
+.mq-item{flex-shrink:0;padding:8px 24px;margin:0 8px;border-radius:8px;font-size:.82rem;font-weight:600;white-space:nowrap}
+.mq-neg{background:rgba(227,57,0,.08);color:#c93000;border:1px solid rgba(227,57,0,.2)}
+.mq-pos{background:rgba(0,158,227,.08);color:#0080b8;border:1px solid rgba(0,158,227,.2)}
+.mq-neu{background:rgba(0,0,0,.04);color:#757575;border:1px solid rgba(0,0,0,.08)}
+
+/* ===== TRUST ===== */
+.trust{padding:56px 0;background:var(--white)}
+.trust-grid{display:flex;justify-content:center;gap:64px;flex-wrap:wrap}
+.trust-item{display:flex;align-items:center;gap:16px}
+.trust-icon{width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,var(--navy),var(--royal));display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(36,36,36,.12)}
+.trust-icon svg{width:22px;height:22px;fill:none;stroke:var(--gold);stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.trust-text{font-size:.8rem;font-weight:600;color:var(--sub);line-height:1.4}
+.trust-text span{display:block;font-family:'Poppins',sans-serif;font-size:1.5rem;font-weight:900;color:var(--navy);letter-spacing:-.02em}
+
+/* ===== ABOUT ===== */
+.about{padding:140px 0;background:linear-gradient(180deg,var(--white) 0%,var(--off-white) 100%)}
+.about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
+.about-image .placeholder{aspect-ratio:4/3;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg)}
+.about-text h3{font-size:2.2rem;font-weight:900;color:var(--heading);margin-bottom:24px;line-height:1.45;letter-spacing:-.02em}
+.about-text h3 span{background:linear-gradient(135deg,var(--royal),var(--royal-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.about-text p{font-size:1.05rem;color:var(--sub);line-height:2.2;margin-bottom:16px}
+.about-kw-group{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.about-kw{font-size:.82rem;font-weight:600;padding:10px 20px;border-radius:10px;border:1px solid}
+.about-kw.neg{background:rgba(227,57,0,.06);border-color:rgba(227,57,0,.15);color:#c93000}
+.about-kw.pos{background:rgba(0,158,227,.05);border-color:rgba(0,158,227,.12);color:var(--royal)}
+
+/* ===== TROUBLE ===== */
+.trouble{padding:140px 0;background:linear-gradient(180deg,var(--light-blue) 0%,var(--pale-blue) 50%,var(--light-blue) 100%);position:relative}
+.trouble::before{content:'';position:absolute;top:0;right:0;width:40%;height:100%;background:radial-gradient(ellipse at right,rgba(0,158,227,.04),transparent 70%)}
+.trouble-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;position:relative;z-index:1}
+.trouble-card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md)}
+.trouble-card .placeholder{aspect-ratio:4/3;border-radius:0}
+.trouble-card-body{padding:32px 28px}
+.trouble-num{font-family:'Poppins',sans-serif;font-size:.62rem;font-weight:700;color:var(--gold);letter-spacing:.2em;margin-bottom:8px}
+.trouble-card-body h3{font-size:1.15rem;font-weight:700;color:var(--heading);margin-bottom:12px;line-height:1.55}
+.trouble-card-body p{font-size:.9rem;color:var(--sub);line-height:1.9}
+.trouble-tag{display:flex;align-items:center;gap:8px;margin-top:18px;padding-top:16px;border-top:1px solid var(--border);font-size:.75rem;color:var(--muted)}
+.trouble-tag .dot{width:8px;height:8px;border-radius:50%;background:var(--royal)}
+
+/* ===== RISK ===== */
+.risk{padding:140px 0;background:linear-gradient(180deg,var(--white) 0%,var(--off-white) 100%);position:relative;overflow:hidden}
+.risk-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:80px;align-items:center}
+.risk-image .placeholder{aspect-ratio:4/3;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg)}
+.risk-content{position:relative;z-index:1}
+.risk-list{display:flex;flex-direction:column;gap:24px}
+.risk-item{display:flex;align-items:flex-start;gap:20px;background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:var(--radius);padding:28px;box-shadow:var(--shadow-sm)}
+.risk-num{font-family:'Poppins',sans-serif;font-size:1.6rem;font-weight:900;background:linear-gradient(135deg,#e33900,#ff5733);-webkit-background-clip:text;-webkit-text-fill-color:transparent;flex-shrink:0;line-height:1}
+.risk-item h3{font-size:1rem;font-weight:700;color:var(--heading);margin-bottom:6px}
+.risk-item p{font-size:.88rem;color:var(--sub);line-height:1.85}
+
+/* ===== CTA BANNER ===== */
+.cta-banner{padding:100px 0;position:relative;overflow:hidden;text-align:center}
+.cta-gradient{background:linear-gradient(135deg,var(--navy) 0%,#1a1a1a 40%,var(--royal) 100%)}
+.cta-light{background:linear-gradient(135deg,var(--light-blue),var(--pale-blue),var(--light-blue))}
+.cta-banner::before{content:'';position:absolute;top:-30%;right:-10%;width:500px;height:500px;background:radial-gradient(circle,rgba(69,165,142,.08),transparent 60%);pointer-events:none}
+.cta-banner h2{font-size:2.2rem;font-weight:900;margin-bottom:16px;line-height:1.45;letter-spacing:-.02em}
+.cta-gradient h2{color:#fff}
+.cta-light h2{color:var(--heading)}
+.cta-banner p{font-size:1.05rem;margin-bottom:36px;line-height:1.9}
+.cta-gradient p{color:rgba(255,255,255,.65)}
+.cta-light p{color:var(--sub)}
+.cta-note{font-size:.75rem;margin-top:16px;display:block}
+.cta-gradient .cta-note{color:rgba(255,255,255,.35)}
+.cta-light .cta-note{color:var(--muted)}
+
+/* ===== BEFORE/AFTER ===== */
+.ba{padding:140px 0;background:linear-gradient(180deg,var(--light-blue) 0%,var(--white) 100%)}
+.ba-cases{display:flex;flex-direction:column;gap:64px}
+.ba-case{background:var(--glass);backdrop-filter:blur(16px);border:1px solid var(--glass-border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-md)}
+.ba-case-header{background:linear-gradient(135deg,#1b3a5c,#24486e);padding:20px 36px;display:flex;align-items:center;gap:20px}
+.ba-case-num{font-family:'Poppins',sans-serif;font-size:.72rem;font-weight:700;color:#fff;letter-spacing:.12em;background:rgba(255,255,255,.15);padding:6px 18px;border-radius:4px;border:none}
+.ba-case-industry{font-size:.85rem;color:rgba(255,255,255,.75);font-weight:500}
+.ba-case-body{display:grid;grid-template-columns:1fr auto 1fr}
+.ba-side{padding:36px 32px}
+.ba-side.before{background:rgba(227,57,0,.03)}
+.ba-side.after{background:rgba(0,158,227,.03)}
+.ba-label{display:inline-block;font-family:'Poppins',sans-serif;font-size:.68rem;font-weight:700;padding:5px 16px;border-radius:6px;margin-bottom:16px;letter-spacing:.1em}
+.ba-label.bl{background:#e33900;color:#fff}
+.ba-label.al{background:var(--royal);color:#fff}
+.ba-side h4{font-size:1.05rem;font-weight:700;color:var(--heading);margin-bottom:12px;line-height:1.55}
+.ba-side p{font-size:.88rem;color:var(--sub);line-height:1.9}
+.ba-suggest{margin-top:20px;background:var(--white);border-radius:12px;padding:18px 20px;border:1px solid var(--border);box-shadow:var(--shadow-sm)}
+.ba-suggest-title{font-size:.7rem;font-weight:700;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:6px}
+.ba-suggest-title svg{width:13px;height:13px;fill:none;stroke:var(--muted);stroke-width:2}
+.ba-suggest-item{font-size:.85rem;padding:8px 12px;border-radius:8px;display:flex;align-items:center;gap:10px;font-weight:600;margin-bottom:6px}
+.ba-suggest-item:last-child{margin-bottom:0}
+.ba-suggest-item.neg{background:rgba(227,57,0,.06);color:#c93000}
+.ba-suggest-item.pos{background:rgba(0,158,227,.06);color:var(--royal)}
+.ba-suggest-item .mark{font-weight:800;font-size:.9rem;flex-shrink:0;width:18px}
+.ba-arrow{display:flex;align-items:center;justify-content:center;width:64px;background:linear-gradient(180deg,rgba(227,57,0,.03),rgba(0,158,227,.03))}
+.ba-arrow-inner{width:48px;height:48px;background:linear-gradient(135deg,var(--navy),var(--royal));border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(36,36,36,.2)}
+.ba-arrow-inner svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.ba-result{padding:20px 36px;border-top:1px solid var(--border);display:flex;align-items:center;gap:28px;flex-wrap:wrap}
+.ba-result-tag{display:flex;align-items:center;gap:8px;font-size:.82rem;font-weight:600;color:var(--royal)}
+.ba-result-tag svg{width:18px;height:18px;fill:none;stroke:var(--royal);stroke-width:2}
+
+/* ===== SOLUTION ===== */
+.solution{padding:140px 0;background:linear-gradient(180deg,var(--white),var(--off-white))}
+.sol-blocks{display:flex;flex-direction:column;gap:120px}
+.sol-block{display:grid;grid-template-columns:1.2fr 1fr;gap:80px;align-items:center}
+.sol-block.rev{direction:rtl}
+.sol-block.rev>*{direction:ltr}
+.sol-image .placeholder{aspect-ratio:16/9;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg)}
+.sol-num{font-family:'Poppins',sans-serif;font-size:.72rem;font-weight:700;color:var(--gold);letter-spacing:.25em;margin-bottom:10px}
+.sol-text h3{font-size:2rem;font-weight:900;color:var(--heading);margin-bottom:18px;line-height:1.45;letter-spacing:-.02em}
+.sol-text p{font-size:1rem;color:var(--sub);line-height:2.1;margin-bottom:24px}
+.sol-targets{display:flex;flex-wrap:wrap;gap:10px;margin-bottom:24px}
+.sol-target{font-size:.78rem;font-weight:600;padding:9px 18px;border-radius:10px;background:var(--glass);backdrop-filter:blur(8px);border:1px solid var(--glass-border);color:var(--navy)}
+.sol-features li{display:flex;align-items:center;gap:12px;font-size:.92rem;font-weight:500;margin-bottom:14px;color:var(--body)}
+.sol-features li::before{content:'';width:22px;height:22px;background:linear-gradient(135deg,var(--royal),var(--royal-light));border-radius:50%;flex-shrink:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:center}
+
+/* ===== NUMBERS ===== */
+.numbers{padding:100px 0;background:linear-gradient(135deg,#1b3a5c,#24486e,#0a6fa8);position:relative}
+.numbers::before{display:none}
+.numbers-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;position:relative;z-index:1;max-width:960px;margin:0 auto}
+.numbers-item{text-align:center;padding:32px 20px}
+.numbers-item svg{display:none}
+.numbers-num{font-family:'Poppins',sans-serif;font-size:3.2rem;font-weight:900;color:#fff;line-height:1}
+.numbers-num small{font-size:1.1rem;font-weight:700;color:#fff}
+.numbers-label{font-size:.92rem;color:rgba(255,255,255,.85);margin-top:14px;font-weight:600;letter-spacing:.05em}
+
+/* ===== STRENGTH ===== */
+.strength{padding:140px 0;background:linear-gradient(180deg,var(--off-white),var(--light-blue),var(--off-white))}
+.str-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-bottom:24px}
+.str-last{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;max-width:780px;margin:0 auto}
+.str-card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:40px 28px;text-align:center;box-shadow:var(--shadow-md);position:relative;overflow:hidden}
+.str-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,var(--royal),var(--royal-light))}
+.str-card-num{font-family:'Poppins',sans-serif;font-size:.65rem;font-weight:700;color:var(--gold);letter-spacing:.25em;margin-bottom:18px}
+.str-card .placeholder{aspect-ratio:3/2;border-radius:12px;margin-bottom:20px;box-shadow:var(--shadow-sm)}
+.str-card h3{font-size:1.1rem;font-weight:700;color:var(--heading);margin-bottom:12px;line-height:1.5}
+.str-card p{font-size:.85rem;color:var(--sub);line-height:1.9}
+
+/* ===== COMPARISON ===== */
+.comparison{padding:140px 0;background:var(--white)}
+.comp-grid{max-width:900px;margin:0 auto}
+.comp-table{width:100%;border-collapse:separate;border-spacing:0;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg);border:1px solid var(--border)}
+.comp-table thead th{padding:24px 24px;font-size:1rem;font-weight:700;color:#fff;text-align:center}
+.comp-table thead th:first-child{background:#5a6a7a;text-align:left}
+.comp-table thead th:nth-child(2){background:#8a95a5}
+.comp-table thead th:nth-child(3){background:linear-gradient(135deg,var(--royal),var(--royal-light));font-size:1.1rem}
+.comp-table tbody td{padding:22px 24px;font-size:1rem;border-bottom:1px solid var(--border);text-align:center;color:var(--body)}
+.comp-table tbody td:first-child{text-align:left;font-weight:600;background:var(--off-white);color:var(--heading)}
+.comp-table tbody td:nth-child(3){background:rgba(0,158,227,.06);font-weight:700;color:var(--royal)}
+.comp-table tbody tr:last-child td{border-bottom:none}
+.cc{display:inline-flex;width:28px;height:28px;border-radius:50%;align-items:center;justify-content:center;font-size:.78rem;font-weight:700;color:#fff}
+.cc.ok{background:linear-gradient(135deg,var(--royal),var(--royal-light))}
+.cc.mid{background:var(--gold)}
+.cc.no{background:#bbb}
+.comp-image .placeholder{aspect-ratio:4/3;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg)}
+
+/* ===== VOICE ===== */
+.voice{padding:140px 0;background:linear-gradient(180deg,var(--light-blue),var(--off-white))}
+.voice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.voice-card{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:36px 28px;box-shadow:var(--shadow-md)}
+.voice-stars{display:flex;gap:3px;margin-bottom:16px}
+.voice-star{width:18px;height:18px;fill:var(--gold)}
+.voice-card p{font-size:.92rem;color:var(--sub);line-height:2;margin-bottom:20px}
+.voice-profile{display:flex;align-items:center;gap:14px;padding-top:18px;border-top:1px solid var(--border)}
+.voice-avatar{width:48px;height:48px;border-radius:50%;overflow:hidden;flex-shrink:0}
+.voice-avatar .placeholder{width:48px;height:48px;border-radius:50%;border:none;font-size:.5rem}
+.voice-info{font-size:.78rem;color:var(--muted);line-height:1.5}
+.voice-info strong{display:block;color:var(--heading);font-size:.85rem}
+
+/* ===== FLOW ===== */
+.flow{padding:140px 0;background:var(--white)}
+.flow-steps{max-width:760px;margin:0 auto}
+.flow-step{display:flex;align-items:flex-start;gap:32px;padding:32px 0;position:relative}
+.flow-step:not(:last-child)::after{content:'';position:absolute;left:27px;top:88px;bottom:0;width:2px;background:linear-gradient(to bottom,var(--royal),rgba(0,158,227,.1))}
+.flow-num{width:56px;height:56px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;font-size:.95rem;font-weight:800;color:#fff;flex-shrink:0;position:relative;z-index:1;background:linear-gradient(135deg,var(--navy),var(--royal));border:4px solid var(--white);box-shadow:0 4px 16px rgba(36,36,36,.12)}
+.flow-content h3{font-size:1.1rem;font-weight:700;color:var(--heading);margin-bottom:6px}
+.flow-content p{font-size:.9rem;color:var(--sub);line-height:1.9}
+.flow-tag{display:inline-block;font-size:.68rem;font-weight:600;color:var(--royal);background:var(--light-blue);padding:4px 14px;border-radius:6px;margin-top:10px;border:1px solid var(--pale-blue)}
+
+/* ===== FAQ ===== */
+.faq{padding:140px 0;background:linear-gradient(180deg,var(--off-white),var(--light-blue))}
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.faq-item{background:var(--glass);backdrop-filter:blur(16px);border-radius:var(--radius);border:1px solid var(--glass-border);box-shadow:var(--shadow-sm);overflow:hidden}
+.faq-question{width:100%;padding:24px 28px;display:flex;align-items:center;gap:16px;cursor:pointer;border:none;background:none;text-align:left;font-size:.95rem;font-weight:700;color:var(--heading);font-family:'Noto Sans JP',sans-serif}
+.faq-q-label{font-family:'Poppins',sans-serif;font-size:1.1rem;font-weight:800;color:var(--gold);flex-shrink:0;width:28px}
+.faq-toggle{margin-left:auto;width:30px;height:30px;border-radius:50%;background:var(--light-blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .3s}
+.faq-toggle::before{content:'';width:8px;height:8px;border-right:2px solid var(--navy);border-bottom:2px solid var(--navy);transform:rotate(45deg);transition:transform .3s;margin-top:-3px}
+.faq-item.open .faq-toggle{background:var(--navy)}
+.faq-item.open .faq-toggle::before{border-color:#fff;transform:rotate(-135deg);margin-top:3px}
+.faq-answer{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.faq-answer-inner{padding:0 28px 28px 72px;font-size:.92rem;color:var(--sub);line-height:2.1}
+.faq-answer-inner .al{font-family:'Poppins',sans-serif;font-weight:700;color:var(--heading);margin-right:6px}
+
+/* ===== CONTACT ===== */
+.contact{padding:140px 0;background:var(--white)}
+.contact-wrap{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start;max-width:1080px;margin:0 auto}
+.contact-info{padding-top:20px}
+.contact-info h2{font-size:2.2rem;font-weight:900;color:var(--heading);margin-bottom:16px;line-height:1.4;letter-spacing:-.02em}
+.contact-info p{font-size:1rem;color:var(--sub);line-height:2;margin-bottom:32px}
+.contact-image .placeholder{aspect-ratio:4/3;border-radius:var(--radius-lg);box-shadow:var(--shadow-md)}
+.contact-box{background:var(--glass);backdrop-filter:blur(20px);border:1px solid var(--glass-border);border-radius:var(--radius-lg);padding:48px 40px;box-shadow:var(--shadow-md)}
+.contact-box h3{font-size:1.2rem;font-weight:700;color:var(--heading);margin-bottom:8px;text-align:center}
+.contact-box .box-sub{font-size:.82rem;color:var(--muted);text-align:center;margin-bottom:32px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-group{margin-bottom:20px}
+.form-group label{display:flex;align-items:center;gap:8px;font-size:.84rem;font-weight:700;color:var(--heading);margin-bottom:8px}
+.form-group label .req{font-size:.62rem;color:#fff;background:#e33900;padding:2px 10px;border-radius:4px;font-weight:600}
+.form-group label .opt{font-size:.62rem;color:var(--muted);background:var(--light-blue);padding:2px 10px;border-radius:4px;font-weight:600}
+.form-group input,.form-group select,.form-group textarea{width:100%;padding:14px 18px;border:1px solid rgba(36,36,36,.1);border-radius:12px;font-size:.92rem;font-family:'Noto Sans JP',sans-serif;transition:border-color .3s,box-shadow .3s;background:rgba(255,255,255,.7)}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{outline:none;border-color:var(--royal);box-shadow:0 0 0 4px rgba(0,158,227,.08)}
+.form-group textarea{min-height:120px;resize:vertical}
+.form-privacy{font-size:.75rem;color:var(--muted);text-align:center;margin-bottom:24px;line-height:1.8}
+.form-privacy a{color:var(--royal);text-decoration:underline}
+.form-submit{text-align:center}
+.form-submit button{background:linear-gradient(135deg,var(--cta),#ff5733);color:#fff;font-size:1.05rem;font-weight:700;padding:20px 64px;border-radius:60px;border:none;cursor:pointer;font-family:'Noto Sans JP',sans-serif;box-shadow:0 8px 32px rgba(227,57,0,.25),inset 0 1px 0 rgba(255,255,255,.2)}
+
+/* ===== PRIVACY MODAL ===== */
+.pp-modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:2000;align-items:center;justify-content:center}
+.pp-modal-overlay.open{display:flex}
+.pp-modal{background:#fff;border-radius:var(--radius-lg);max-width:720px;width:90%;max-height:80vh;display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(0,0,0,.15)}
+.pp-modal-header{display:flex;align-items:center;justify-content:space-between;padding:24px 32px;border-bottom:1px solid var(--border)}
+.pp-modal-header h3{font-size:1.1rem;font-weight:700;color:var(--heading)}
+.pp-modal-close{background:none;border:none;font-size:1.5rem;cursor:pointer;color:var(--sub);line-height:1;padding:4px}
+.pp-modal-body{padding:32px;overflow-y:auto;font-size:.88rem;color:var(--body);line-height:2}
+.pp-modal-body h4{font-size:.95rem;font-weight:700;color:var(--heading);margin:24px 0 8px}
+.pp-modal-body h4:first-child{margin-top:0}
+.form-consent{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:24px}
+.form-consent input[type="checkbox"]{width:18px;height:18px;accent-color:var(--royal);cursor:pointer}
+.form-consent label{font-size:.82rem;color:var(--body);cursor:pointer}
+.form-consent a{color:var(--royal);text-decoration:underline;cursor:pointer}
+
+/* ===== FOOTER ===== */
+.footer{padding:52px 0 28px;background:var(--navy);color:rgba(255,255,255,.4)}
+.footer-inner{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.footer-company{font-size:.82rem;line-height:2}
+.footer-company strong{color:#fff;font-size:.95rem;display:block;margin-bottom:4px;font-family:'Poppins',sans-serif;font-weight:700}
+.footer-links{display:flex;gap:28px}
+.footer-links a{font-size:.78rem;transition:color .3s}
+.footer-links a:hover{color:var(--gold)}
+.footer-bottom{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);text-align:center}
+.footer-copy{font-family:'Poppins',sans-serif;font-size:.68rem;color:rgba(255,255,255,.2)}
+
+/* ===== FLOATING ===== */
+.floating-cta{position:fixed;bottom:28px;right:28px;z-index:999;border-radius:60px}
+.floating-cta a{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,var(--cta),#ff5733);color:#fff;font-size:1rem;font-weight:700;padding:20px 36px;border-radius:60px;letter-spacing:.05em;animation:pulse-cta 2s ease-in-out infinite}
+@keyframes pulse-cta{0%,100%{transform:scale(1);box-shadow:0 8px 32px rgba(227,57,0,.4)}50%{transform:scale(1.05);box-shadow:0 12px 40px rgba(227,57,0,.5),0 0 0 8px rgba(227,57,0,.1)}}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .hero{padding:120px 0 100px}
+  .hero-grid{grid-template-columns:1fr;gap:40px}.hero-image{display:none!important}
+  .hero h1{font-size:2rem}.sec-title{font-size:1.8rem}
+  .hero-stats{flex-wrap:wrap;gap:10px}.hero-stat{padding:16px 12px}.hero-stat-num{font-size:1.6rem}
+  .hero-cta-group{flex-direction:column}.btn-cta,.btn-ghost,.btn-cta-white{width:100%;justify-content:center;padding:18px 24px}
+  .trust-grid{gap:24px}.trust-item{flex-direction:column;text-align:center}
+  .about-grid,.risk-grid,.sol-block,.sol-block.rev,.comp-grid,.contact-wrap{grid-template-columns:1fr;direction:ltr;gap:40px}
+  .trouble-grid,.str-grid,.str-last,.voice-grid,.numbers-grid{grid-template-columns:1fr}
+  .ba-case-body{grid-template-columns:1fr}.ba-arrow{width:100%;height:56px}
+  .numbers-grid{grid-template-columns:repeat(2,1fr)}.numbers-num{font-size:2rem}
+  .contact-box{padding:32px 20px}.form-row{grid-template-columns:1fr}
+  .header-tel{display:none}
+  .footer-inner{flex-direction:column;text-align:center}.footer-links{justify-content:center}
+  .floating-cta{bottom:14px;right:14px;left:14px}.floating-cta a{justify-content:center}
+  .mq-item{font-size:.72rem;padding:6px 14px}
+  .cta-banner h2{font-size:1.5rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="#" class="logo">TRIPOT<small>トライポット株式会社</small></a>
+    <div class="header-right">
+      <div class="header-tel"><span class="header-tel-note">お気軽にお電話ください</span><a href="tel:052-881-2030">052-881-2030</a></div>
+      <a href="#contact" class="header-cta">無料相談はこちら</a>
+    </div>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-image">
+    <div class="hero-image-wrap">
+      <img src="hero-image.png" alt="サジェスト汚染対策イメージ - 検索画面にネガティブサジェストが表示されている様子">
+    </div>
+  </div>
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-content ao">
+
+        <h1>検索候補に表示される<br><em>ネガティブサジェスト</em>を<br>最速で非表示にします<span class="sub-line">Google / Yahoo! / Bing 全ての検索エンジンに対応</span></h1>
+        <p class="hero-sub">「会社名 + ブラック」「サービス名 + 詐欺」――<br>事実と異なるサジェスト汚染が、貴社の信用・採用・売上を<br>静かに蝕んでいます。私たちが確実に解決します。</p>
+        <div class="hero-stats">
+          <div class="hero-stat"><div class="hero-stat-num" data-count="200">200<small>社+</small></div><div class="hero-stat-label">対策実績</div></div>
+          <div class="hero-stat"><div class="hero-stat-num" data-count="82">82<small>%</small></div><div class="hero-stat-label">顧客満足度</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">即日</div><div class="hero-stat-label">対応（営業日）</div></div>
+        </div>
+        <div class="hero-cta-group">
+          <a href="#contact" class="btn-cta">無料で相談する</a>
+          <a href="#solution" class="btn-ghost">サービス詳細を見る</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track"><span class="mq-item mq-neg">○○株式会社 ブラック</span><span class="mq-item mq-neg">○○株式会社 詐欺</span><span class="mq-item mq-pos">○○株式会社 採用情報</span><span class="mq-item mq-neg">○○不動産 トラブル</span><span class="mq-item mq-neg">○○クリニック 失敗</span><span class="mq-item mq-pos">○○株式会社 評判</span><span class="mq-item mq-neg">○○会社 パワハラ</span><span class="mq-item mq-neu">○○株式会社 年収</span><span class="mq-item mq-neg">○○サービス 悪質</span><span class="mq-item mq-pos">○○株式会社 事業内容</span><span class="mq-item mq-neg">○○会社 やばい</span><span class="mq-item mq-pos">○○不動産 口コミ</span><span class="mq-item mq-neg">○○株式会社 ブラック</span><span class="mq-item mq-neg">○○株式会社 詐欺</span><span class="mq-item mq-pos">○○株式会社 採用情報</span><span class="mq-item mq-neg">○○不動産 トラブル</span><span class="mq-item mq-neg">○○クリニック 失敗</span><span class="mq-item mq-pos">○○株式会社 評判</span><span class="mq-item mq-neg">○○会社 パワハラ</span><span class="mq-item mq-neu">○○株式会社 年収</span><span class="mq-item mq-neg">○○サービス 悪質</span><span class="mq-item mq-pos">○○株式会社 事業内容</span><span class="mq-item mq-neg">○○会社 やばい</span><span class="mq-item mq-pos">○○不動産 口コミ</span></div>
+  <div class="marquee-track rev" style="margin-top:6px"><span class="mq-item mq-neg">○○クリニック 訴訟</span><span class="mq-item mq-pos">○○クリニック 予約</span><span class="mq-item mq-neg">○○株式会社 倒産</span><span class="mq-item mq-neu">○○不動産 物件</span><span class="mq-item mq-neg">○○会社 危険</span><span class="mq-item mq-pos">○○株式会社 サービス</span><span class="mq-item mq-neg">○○サロン 被害</span><span class="mq-item mq-pos">○○クリニック 料金</span><span class="mq-item mq-neg">○○会社 怪しい</span><span class="mq-item mq-neu">○○不動産 評判</span><span class="mq-item mq-neg">○○企業 裁判</span><span class="mq-item mq-pos">○○株式会社 求人</span><span class="mq-item mq-neg">○○クリニック 訴訟</span><span class="mq-item mq-pos">○○クリニック 予約</span><span class="mq-item mq-neg">○○株式会社 倒産</span><span class="mq-item mq-neu">○○不動産 物件</span><span class="mq-item mq-neg">○○会社 危険</span><span class="mq-item mq-pos">○○株式会社 サービス</span><span class="mq-item mq-neg">○○サロン 被害</span><span class="mq-item mq-pos">○○クリニック 料金</span><span class="mq-item mq-neg">○○会社 怪しい</span><span class="mq-item mq-neu">○○不動産 評判</span><span class="mq-item mq-neg">○○企業 裁判</span><span class="mq-item mq-pos">○○株式会社 求人</span></div>
+</div>
+
+<!-- TRUST -->
+<section class="trust">
+  <div class="container">
+    <div class="trust-grid">
+      <div class="trust-item ao"><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg></div><div class="trust-text">対策実績<span>200社+</span></div></div>
+      <div class="trust-item ao ao-d1"><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div><div class="trust-text">顧客満足度<span>82%</span></div></div>
+      <div class="trust-item ao ao-d2"><div class="trust-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div><div class="trust-text">即日対応<span>営業日</span></div></div>
+      <div class="trust-item ao ao-d3"><div class="trust-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div><div class="trust-text">上場企業<span>導入多数</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image ao">
+        <img src="about-image.png" alt="サジェスト汚染の解説イメージ" style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:block">
+      </div>
+      <div class="about-text ao ao-d2">
+        <p class="sec-label">What is</p>
+        <h3>そもそも<span>サジェスト汚染</span>とは?</h3>
+        <p>サジェスト汚染とは、GoogleやYahoo!などの検索エンジンで企業名やサービス名を入力した際に、検索候補（サジェスト）にネガティブなキーワードが表示される現象です。</p>
+        <p>一度表示され始めると検索エンジンの学習機能によって定着しやすく、放置すれば採用・売上・信用に直接的なダメージを与え続けます。</p>
+        <div class="about-kw-group">
+          <span class="about-kw neg">○○会社 ブラック</span><span class="about-kw neg">○○会社 詐欺</span><span class="about-kw neg">○○会社 パワハラ</span><span class="about-kw pos">○○会社 採用</span><span class="about-kw pos">○○会社 評判</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TROUBLE -->
+<section class="trouble">
+  <div class="container">
+    <div class="text-center"><p class="sec-label ao">Trouble</p><h2 class="sec-title ao">こんなことで<span class="em">お困り</span>ではないですか?</h2><p class="sec-lead ao">サジェスト汚染は、気づかないうちに企業活動のあらゆる場面に影響を与えています。</p></div>
+    <div class="trouble-grid">
+      <div class="trouble-card ao">
+        <img src="trouble-03.png" alt="経営者イメージ" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block">
+        <div class="trouble-card-body"><p class="trouble-num">CASE 01</p><h3>会社名を検索すると「ブラック」「詐欺」が表示される</h3><p>検索候補にネガティブワードが表示され、取引先・顧客・求職者に悪印象を与え、ビジネスチャンスを逃してしまう。</p><div class="trouble-tag"><span class="dot"></span>IT企業 / 経営者</div></div>
+      </div>
+      <div class="trouble-card ao ao-d1">
+        <img src="trouble-02.png" alt="採用担当イメージ" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block">
+        <div class="trouble-card-body"><p class="trouble-num">CASE 02</p><h3>採用活動に深刻な悪影響が出ている</h3><p>求職者が応募前に社名を検索し、ネガティブサジェストを目にして辞退。内定承諾率が下がり、優秀な人材を逃してしまう。</p><div class="trouble-tag"><span class="dot"></span>人材派遣 / 人事担当</div></div>
+      </div>
+      <div class="trouble-card ao ao-d2">
+        <img src="trouble-03-new.png" alt="営業担当イメージ" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block">
+        <div class="trouble-card-body"><p class="trouble-num">CASE 03</p><h3>売上・問い合わせ数が目に見えて減少している</h3><p>サービスを検討中の見込み客がサジェストのネガティブ情報を見て離脱。CVRが低下し、広告費だけが消化されていく。</p><div class="trouble-tag"><span class="dot"></span>不動産 / 代表取締役</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RISK -->
+<section class="risk">
+  <div class="container">
+    <div class="text-center"><p class="sec-label ao">Risk</p><h2 class="sec-title ao">そのままにしておくと<span class="gd">大変なことに...</span></h2><p class="sec-lead ao">サジェスト汚染は放置するほど定着し、対策の難易度とコストが跳ね上がります。</p></div>
+    <div class="risk-grid">
+      <div class="risk-image ao">
+        <img src="risk-image.png" alt="リスクイメージ" style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:block">
+      </div>
+      <div class="risk-content">
+        <div class="risk-list">
+          <div class="risk-item ao"><span class="risk-num">01</span><div><h3>ネガティブワードが関連キーワードにも拡散</h3><p>1つの汚染を放置すると関連する検索候補にも波及。ますます定着しやすくなります。</p></div></div>
+          <div class="risk-item ao ao-d1"><span class="risk-num">02</span><div><h3>取引先・金融機関からの信用が失墜</h3><p>企業調査でサジェストは必ず確認されます。融資審査・取引開始時の判断に影響します。</p></div></div>
+          <div class="risk-item ao ao-d2"><span class="risk-num">03</span><div><h3>対策コストが雪だるま式に増大</h3><p>早期対策なら短期間・低コストで解決できたものが、放置により長期化・高額化します。</p></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA 1 -->
+<section class="cta-banner cta-gradient">
+  <div class="container ao">
+    <h2>まずは現状を無料で診断しませんか?</h2>
+    <p>風評調査・ご相談は完全無料。施策以外に費用はかかりません。</p>
+    <a href="#contact" class="btn-cta-white">無料診断を申し込む</a>
+    <span class="cta-note">※ ご相談だけでも大歓迎です</span>
+  </div>
+</section>
+
+<!-- BEFORE/AFTER -->
+<section class="ba">
+  <div class="container">
+    <div class="text-center"><p class="sec-label ao">Case Study</p><h2 class="sec-title ao">サジェスト対策の<span class="em">ビフォーアフター</span></h2><p class="sec-lead ao">実際にご依頼いただいたお客様の事例をご紹介します。</p></div>
+    <div class="ba-cases">
+      <div class="ba-case ao">
+        <div class="ba-case-header"><span class="ba-case-num">CASE 01</span><span class="ba-case-industry">人材派遣業 / 社員数100名以上</span></div>
+        <div class="ba-case-body">
+          <div class="ba-side before"><span class="ba-label bl">BEFORE</span><h4>サジェストが原因で内定辞退が急増...</h4><p>社名で検索するとネガティブなサジェストが表示され、求職者が辞退。採用活動全体に深刻な影響が出ていました。</p><div class="ba-suggest"><div class="ba-suggest-title"><svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>検索サジェスト表示例</div><div class="ba-suggest-item neg"><span class="mark">x</span>○○株式会社 ブラック</div><div class="ba-suggest-item neg"><span class="mark">x</span>○○株式会社 パワハラ</div><div class="ba-suggest-item neg"><span class="mark">x</span>○○株式会社 やばい</div></div></div>
+          <div class="ba-arrow"><div class="ba-arrow-inner"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+          <div class="ba-side after"><span class="ba-label al">AFTER</span><h4>サジェスト改善で採用活動が正常化</h4><p>ポジティブなキーワード中心にサジェストが最適化。辞退者が大幅に減少しました。</p><div class="ba-suggest"><div class="ba-suggest-title"><svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>検索サジェスト表示例</div><div class="ba-suggest-item pos"><span class="mark">&#10003;</span>○○株式会社 採用</div><div class="ba-suggest-item pos"><span class="mark">&#10003;</span>○○株式会社 年収</div><div class="ba-suggest-item pos"><span class="mark">&#10003;</span>○○株式会社 事業内容</div></div></div>
+        </div>
+        <div class="ba-result"><div class="ba-result-tag"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>内定辞退率 40%減少</div><div class="ba-result-tag"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>採用コスト 30%削減</div><div class="ba-result-tag"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>初回成果まで 約3週間</div></div>
+      </div>
+      <div class="ba-case ao">
+        <div class="ba-case-header"><span class="ba-case-num">CASE 02</span><span class="ba-case-industry">不動産業 / 社員数50名以上</span></div>
+        <div class="ba-case-body">
+          <div class="ba-side before"><span class="ba-label bl">BEFORE</span><h4>サジェスト汚染で顧客の信頼が失墜...</h4><p>社名やサービス名を検索した際にネガティブワードが表示され、問い合わせが激減していました。</p><div class="ba-suggest"><div class="ba-suggest-title"><svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>検索サジェスト表示例</div><div class="ba-suggest-item neg"><span class="mark">x</span>○○不動産 詐欺</div><div class="ba-suggest-item neg"><span class="mark">x</span>○○不動産 トラブル</div><div class="ba-suggest-item neg"><span class="mark">x</span>○○不動産 悪質</div></div></div>
+          <div class="ba-arrow"><div class="ba-arrow-inner"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+          <div class="ba-side after"><span class="ba-label al">AFTER</span><h4>信頼回復により売上がV字回復</h4><p>ネガティブサジェストが非表示化され、問い合わせ数が対策前の水準に戻りました。</p><div class="ba-suggest"><div class="ba-suggest-title"><svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>検索サジェスト表示例</div><div class="ba-suggest-item pos"><span class="mark">&#10003;</span>○○不動産 口コミ</div><div class="ba-suggest-item pos"><span class="mark">&#10003;</span>○○不動産 物件</div><div class="ba-suggest-item pos"><span class="mark">&#10003;</span>○○不動産 評判</div></div></div>
+        </div>
+        <div class="ba-result"><div class="ba-result-tag"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>問い合わせ数 250%回復</div><div class="ba-result-tag"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>売上 前年比120%達成</div><div class="ba-result-tag"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>初回成果まで 約2週間</div></div>
+      </div>
+      <div class="ba-case ao">
+        <div class="ba-case-header"><span class="ba-case-num">CASE 03</span><span class="ba-case-industry">美容クリニック / 開業3年目</span></div>
+        <div class="ba-case-body">
+          <div class="ba-side before"><span class="ba-label bl">BEFORE</span><h4>根拠のない悪評がサジェストに定着...</h4><p>競合からの嫌がらせと思われるネガティブサジェストが定着。新規患者の予約数が3割以上減少していました。</p><div class="ba-suggest"><div class="ba-suggest-title"><svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>検索サジェスト表示例</div><div class="ba-suggest-item neg"><span class="mark">x</span>○○クリニック 失敗</div><div class="ba-suggest-item neg"><span class="mark">x</span>○○クリニック 訴訟</div><div class="ba-suggest-item neg"><span class="mark">x</span>○○クリニック 危険</div></div></div>
+          <div class="ba-arrow"><div class="ba-arrow-inner"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5l7 7-7 7"/></svg></div></div>
+          <div class="ba-side after"><span class="ba-label al">AFTER</span><h4>予約数が回復し新規患者が増加</h4><p>2週間でネガティブサジェストの非表示化に成功。予約数がV字回復しました。</p><div class="ba-suggest"><div class="ba-suggest-title"><svg viewBox="0 0 24 24"><path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round"/></svg>検索サジェスト表示例</div><div class="ba-suggest-item pos"><span class="mark">&#10003;</span>○○クリニック 予約</div><div class="ba-suggest-item pos"><span class="mark">&#10003;</span>○○クリニック 料金</div><div class="ba-suggest-item pos"><span class="mark">&#10003;</span>○○クリニック 症例</div></div></div>
+        </div>
+        <div class="ba-result"><div class="ba-result-tag"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>新規予約数 180%回復</div><div class="ba-result-tag"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>自然検索流入 200%増</div><div class="ba-result-tag"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>初回成果まで 約2週間</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="solution" id="solution">
+  <div class="container">
+    <div class="text-center"><p class="sec-label ao">Solution</p><h2 class="sec-title ao">トライポットの<span class="em">サジェスト対策サービス</span></h2><p class="sec-lead ao">ネガティブサジェストの非表示化から継続監視まで、ワンストップで企業ブランドを守ります。</p></div>
+    <div class="sol-blocks">
+      <div class="sol-block ao">
+        <div class="sol-image"><img src="solution-01.png" alt="サジェスト対策サービスイメージ" style="width:110%;max-width:none;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:block"></div>
+        <div class="sol-text"><p class="sol-num">SERVICE 01</p><h3>サジェスト・関連キーワード<br>非表示対策</h3><p>ネガティブワードを非表示にし、ブランドイメージをクリーンに保つことで、ネガティブサイトへの誘導を防ぎます。</p><div class="sol-targets"><span class="sol-target">Google サジェスト</span><span class="sol-target">Yahoo! サジェスト</span><span class="sol-target">Bing サジェスト</span><span class="sol-target">Google 関連キーワード</span><span class="sol-target">Yahoo! 関連検索ワード</span><span class="sol-target">Bing 関連語</span></div><ul class="sol-features"><li>最短1日で目に見える成果</li><li>成果報酬型プランあり</li><li>全検索エンジンに対応</li></ul></div>
+      </div>
+      <div class="sol-block rev ao">
+        <div class="sol-image"><img src="solution-02.png" alt="サジェスト監視・再発防止サービスイメージ" style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:block"></div>
+        <div class="sol-text"><p class="sol-num">SERVICE 02</p><h3>サジェスト監視・<br>再発防止サービス</h3><p>対策完了後も継続的にサジェストを監視し、再汚染の兆候を即座に検知。再発時は迅速に追加対策を実施します。</p><ul class="sol-features"><li>24時間365日の自動監視体制</li><li>月次レポートで効果を数値で報告</li><li>再発時の即時対応保証つき</li><li>専任担当者による丁寧なサポート</li></ul></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="numbers">
+  <div class="container">
+    <div class="numbers-grid">
+      <div class="numbers-item ao"><svg viewBox="0 0 24 24"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg><div class="numbers-num" data-count="200">200<small>社+</small></div><div class="numbers-label">対策実績</div></div>
+      <div class="numbers-item ao ao-d1"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg><div class="numbers-num" data-count="82">82<small>%</small></div><div class="numbers-label">顧客満足度</div></div>
+      <div class="numbers-item ao ao-d2"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><div class="numbers-num">即日</div><div class="numbers-label">対応（営業日）</div></div>
+      <div class="numbers-item ao ao-d3"><svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg><div class="numbers-num" data-count="90">90<small>%+</small></div><div class="numbers-label">リピート継続率</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- STRENGTH -->
+<section class="strength">
+  <div class="container text-center">
+    <p class="sec-label ao">Why Us</p><h2 class="sec-title ao">トライポットが<span class="em">選ばれる5つの理由</span></h2><p class="sec-lead ao">確かな技術と誠実な対応で、お客様のブランドを守ります。</p>
+    <div class="str-grid">
+      <div class="str-card ao"><p class="str-card-num">POINT 01</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="speed-image.png" alt="業界最速クラスのスピード対応" style="width:100%;height:100%;object-fit:cover"></div><h3>業界最速クラスのスピード対応</h3><p>ご相談から最短即日で対策を開始。最短1日で目に見える成果をお出しします。</p></div>
+      <div class="str-card ao ao-d1"><p class="str-card-num">POINT 02</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="free-consultation-image.png" alt="風評調査・ご相談は完全無料" style="width:100%;height:100%;object-fit:cover"></div><h3>風評調査・ご相談は完全無料</h3><p>施策以外に費用はいただきません。無料で汚染状況を調査し最適なプランをご提案。</p></div>
+      <div class="str-card ao ao-d2"><p class="str-card-num">POINT 03</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="visibility-image.png" alt="対策状況の完全見える化" style="width:100%;height:100%;object-fit:cover"></div><h3>対策状況の完全見える化</h3><p>毎日の成果状況を確認できるツールをご提供。施策内容を具体的にご説明します。</p></div>
+    </div>
+    <div class="str-last">
+      <div class="str-card ao"><p class="str-card-num">POINT 04</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="algorithm-image.png" alt="アルゴリズム変動に柔軟対応" style="width:100%;height:100%;object-fit:cover"></div><h3>アルゴリズム変動に柔軟対応</h3><p>検索エンジンの仕様変化に迅速に対応し、常に最新の技術で対策を維持します。</p></div>
+      <div class="str-card ao ao-d1"><p class="str-card-num">POINT 05</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="branding-support-image.png" alt="ブランディングまでトータルサポート" style="width:100%;height:100%;object-fit:cover"></div><h3>ブランディングまでトータルサポート</h3><p>非表示化だけでなく、多角的な視点で企業ブランディングにつながるプランをご提案。</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="comparison">
+  <div class="container">
+    <div class="text-center"><p class="sec-label ao">Comparison</p><h2 class="sec-title ao">他社との<span class="em">比較</span></h2><p class="sec-lead ao">サジェスト対策は業者によって品質が大きく異なります。</p></div>
+    <div class="comp-grid ao">
+      <table class="comp-table">
+        <thead><tr><th>比較項目</th><th>一般的な業者</th><th>トライポット</th></tr></thead>
+        <tbody>
+          <tr><td>対応スピード</td><td>1~2週間</td><td>最短24時間</td></tr>
+          <tr><td>料金体系</td><td>月額固定が多い</td><td>成果報酬型あり</td></tr>
+          <tr><td>無料調査</td><td><span class="cc mid">△</span></td><td><span class="cc ok">&#10003;</span></td></tr>
+          <tr><td>対策の見える化</td><td><span class="cc no">x</span></td><td><span class="cc ok">&#10003;</span></td></tr>
+          <tr><td>対応検索エンジン</td><td>Google のみ</td><td>Google / Yahoo! / Bing</td></tr>
+          <tr><td>再発防止</td><td><span class="cc no">x</span></td><td><span class="cc ok">&#10003;</span></td></tr>
+          <tr><td>専任担当者</td><td><span class="cc mid">△</span></td><td><span class="cc ok">&#10003;</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- CTA 2 -->
+<section class="cta-banner cta-light">
+  <div class="container ao">
+    <h2>サジェストの問題、一人で抱えていませんか?</h2>
+    <p>専門スタッフが現状を無料で診断し、最適な対策をご提案します。</p>
+    <a href="#contact" class="btn-cta">無料相談を予約する</a>
+    <span class="cta-note">※ 相談だけでも大歓迎です</span>
+  </div>
+</section>
+
+<!-- VOICE -->
+<section class="voice">
+  <div class="container">
+    <div class="text-center"><p class="sec-label ao">Voice</p><h2 class="sec-title ao">お客様の<span class="em">声</span></h2><p class="sec-lead ao">実際にサービスをご利用いただいたお客様から頂いた声をご紹介します。</p></div>
+    <div class="voice-grid">
+      <div class="voice-card ao"><div class="voice-stars"><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p>対策のスピードに驚きました。相談してから3日で効果が見え始め、2週間後にはネガティブサジェストが完全に非表示になりました。</p><div class="voice-profile"><div class="voice-avatar"><div class="placeholder" style="width:48px;height:48px;border-radius:50%;font-size:.4rem">人物<span class="ph-size" style="font-size:.35rem">1:1 / 200px</span></div></div><div class="voice-info"><strong>製造業 / 経営企画部長</strong>社員数200名 / 愛知県</div></div></div>
+      <div class="voice-card ao ao-d1"><div class="voice-stars"><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p>他社で半年対策してもらっていましたが効果がなく、乗り換えました。対策の進捗が管理画面で見えるので安心感が全く違います。</p><div class="voice-profile"><div class="voice-avatar"><div class="placeholder" style="width:48px;height:48px;border-radius:50%;font-size:.4rem">人物<span class="ph-size" style="font-size:.35rem">1:1 / 200px</span></div></div><div class="voice-info"><strong>人材紹介 / 人事部マネージャー</strong>社員数80名 / 東京都</div></div></div>
+      <div class="voice-card ao ao-d2"><div class="voice-stars"><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg><svg class="voice-star" viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div><p>成果報酬型なので初期費用ゼロで始められたのが大きかったです。対策完了後も監視を続けてくれていて安心です。</p><div class="voice-profile"><div class="voice-avatar"><div class="placeholder" style="width:48px;height:48px;border-radius:50%;font-size:.4rem">人物<span class="ph-size" style="font-size:.35rem">1:1 / 200px</span></div></div><div class="voice-info"><strong>美容クリニック / 院長</strong>開業5年目 / 大阪府</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FLOW -->
+<section class="flow">
+  <div class="container">
+    <div class="text-center"><p class="sec-label ao">Flow</p><h2 class="sec-title ao">ご利用の<span class="em">流れ</span></h2><p class="sec-lead ao">お問い合わせから対策完了まで、シンプルな5ステップで進行します。</p></div>
+    <div class="flow-steps">
+      <div class="flow-step ao"><div class="flow-num">01</div><div class="flow-content"><h3>お問い合わせ</h3><p>フォームまたはお電話よりお問い合わせください。24時間受付対応しております。</p><span class="flow-tag">無料</span></div></div>
+      <div class="flow-step ao"><div class="flow-num">02</div><div class="flow-content"><h3>担当者よりご連絡・ヒアリング</h3><p>営業時間内であれば3時間以内にご連絡。現状のお悩みを丁寧にヒアリングいたします。</p><span class="flow-tag">最短3時間で対応</span></div></div>
+      <div class="flow-step ao"><div class="flow-num">03</div><div class="flow-content"><h3>サジェスト現状調査・分析</h3><p>対象キーワードのサジェスト汚染状況を無料で調査し、汚染の範囲・深刻度を分析します。</p><span class="flow-tag">無料調査</span></div></div>
+      <div class="flow-step ao"><div class="flow-num">04</div><div class="flow-content"><h3>対策プランのご提案・お見積り</h3><p>調査結果に基づき、最適な対策プランと料金をご提案。ご納得いただいてから着手します。</p></div></div>
+      <div class="flow-step ao"><div class="flow-num">05</div><div class="flow-content"><h3>対策実施・効果確認・継続監視</h3><p>専門チームが対策を実施。効果確認後は継続監視に移行し、再発防止まで長期サポートします。</p><span class="flow-tag">再発時も即時対応</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq">
+  <div class="container">
+    <div class="text-center"><p class="sec-label ao">FAQ</p><h2 class="sec-title ao">よくある<span class="em">ご質問</span></h2><p class="sec-lead ao">お客様からよくいただくご質問にお答えします。</p></div>
+    <div class="faq-list">
+      <div class="faq-item ao"><button class="faq-question"><span class="faq-q-label">Q</span><span>対策にはどのくらいの期間がかかりますか?</span><span class="faq-toggle"></span></button><div class="faq-answer"><div class="faq-answer-inner"><span class="al">A.</span>通常は2週間~2ヶ月程度で効果が現れます（対策内容による）。</div></div></div>
+      <div class="faq-item ao"><button class="faq-question"><span class="faq-q-label">Q</span><span>費用はどのくらいかかりますか?</span><span class="faq-toggle"></span></button><div class="faq-answer"><div class="faq-answer-inner"><span class="al">A.</span>キーワードの難易度や数によって変動します。成果報酬型プランもご用意しておりますので、まずは無料相談にてお見積りをご確認ください。</div></div></div>
+      <div class="faq-item ao"><button class="faq-question"><span class="faq-q-label">Q</span><span>他社で対策中ですが、乗り換えは可能ですか?</span><span class="faq-toggle"></span></button><div class="faq-answer"><div class="faq-answer-inner"><span class="al">A.</span>はい、可能です。現在の対策状況を確認した上で、スムーズに切り替え対応いたします。</div></div></div>
+      <div class="faq-item ao"><button class="faq-question"><span class="faq-q-label">Q</span><span>対策後にサジェストが再表示されることはありますか?</span><span class="faq-toggle"></span></button><div class="faq-answer"><div class="faq-answer-inner"><span class="al">A.</span>再表示の可能性はゼロではありません。そのため継続監視サービスをご用意しており、再発時は速やかに対応いたします。</div></div></div>
+      <div class="faq-item ao"><button class="faq-question"><span class="faq-q-label">Q</span><span>Googleのガイドラインに違反しませんか?</span><span class="faq-toggle"></span></button><div class="faq-answer"><div class="faq-answer-inner"><span class="al">A.</span>当社の対策手法はGoogleのガイドラインに準拠した安全な方法を採用しております。</div></div></div>
+      <div class="faq-item ao"><button class="faq-question"><span class="faq-q-label">Q</span><span>相談だけでも大丈夫ですか?</span><span class="faq-toggle"></span></button><div class="faq-answer"><div class="faq-answer-inner"><span class="al">A.</span>もちろんです。無料相談では現状の診断とアドバイスを行います。ご契約を強制することはございません。</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA 3 -->
+<section class="cta-banner cta-gradient">
+  <div class="container ao">
+    <h2>サジェスト汚染のお悩み、今すぐ解決しませんか?</h2>
+    <p>無料調査でまずは現状を把握。最適な対策をご提案いたします。</p>
+    <a href="#contact" class="btn-cta-white">無料相談を申し込む</a>
+    <span class="cta-note">※ 24時間受付 / 最短即日対応</span>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="contact-wrap">
+      <div class="contact-info ao">
+        <p class="sec-label">Contact</p>
+        <h2>無料相談・<br>お問い合わせ</h2>
+        <p>サジェストに関するお悩みをお気軽にご相談ください。専門スタッフが丁寧にご対応いたします。</p>
+        <div class="contact-image">
+<img src="contact-image.png" alt="無料相談・お問い合わせ" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow-md)">
+        </div>
+      </div>
+      <div class="contact-box ao ao-d2">
+        <h3>無料相談お申し込みフォーム</h3>
+        <p class="box-sub">以下のフォームにご記入の上、送信してください。</p>
+        <form id="contactForm">
+          <div class="form-row"><div class="form-group"><label>会社名 / 組織名<span class="req">必須</span></label><input type="text" name="company" required placeholder="例: トライポット株式会社"></div><div class="form-group"><label>ご担当者名<span class="req">必須</span></label><input type="text" name="name" required placeholder="例: 山田 太郎"></div></div>
+          <div class="form-row"><div class="form-group"><label>メールアドレス<span class="req">必須</span></label><input type="email" name="email" required placeholder="例: info@example.com"></div><div class="form-group"><label>電話番号<span class="req">必須</span></label><input type="tel" name="tel" required placeholder="例: 052-000-0000"></div></div>
+          <div class="form-group"><label>お悩みの内容<span class="opt">任意</span></label><select name="type"><option value="" selected disabled>選択してください</option><option>Google</option><option>Yahoo!</option><option>Bing</option><option>全体的なご相談</option></select></div>
+          <div class="form-group"><label>ご相談内容<span class="opt">任意</span></label><textarea name="message" placeholder="対象のキーワードや現在の状況など、お気軽にご記載ください。"></textarea></div>
+          <div class="form-group"><label>スクリーンショット<span class="opt">任意</span></label><input type="file" name="screenshot" accept="image/*" multiple style="padding:12px;background:var(--off-white);border:1px solid var(--border);border-radius:10px;width:100%;cursor:pointer;font-size:.88rem;color:var(--body)"></div>
+          <div class="form-consent"><input type="checkbox" id="privacyConsent" required><label for="privacyConsent"><a id="openPrivacy">プライバシーポリシー</a>に同意する</label></div>
+          <div class="form-submit"><button type="submit">無料相談を申し込む</button></div>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRIVACY MODAL -->
+<div class="pp-modal-overlay" id="ppModal">
+  <div class="pp-modal">
+    <div class="pp-modal-header"><h3>プライバシーポリシー</h3><button class="pp-modal-close" id="closePrivacy">&times;</button></div>
+    <div class="pp-modal-body">
+      <p>トライポット株式会社（以下「当社」といいます。）は、お客様の個人情報について以下のとおりプライバシーポリシー（以下「本ポリシー」といいます。）を定め、公表いたします。本ポリシーは、当社公式ウェブサイトにおいて取得するお客様の個人情報について、当社およびグループ会社がどのように取得・利用・共有し、お客様がどのようにご自身の個人情報を管理できるかをご説明するものです。また、当社は本ポリシーの内容を継続的に見直し、その改善に努めてまいります。</p>
+      <h4>1. 事業者情報</h4>
+      <p>法人名：トライポット株式会社<br>住所：〒460-0007 愛知県名古屋市中区新栄1丁目2-5 HARVEY 栄EAST 6F<br>代表者：代表取締役 小野 隆士</p>
+      <p>当社は、個人情報の取扱いに関する法令（個人情報保護法等）および国が定める指針その他の規範を遵守し、適切な取得・利用・提供および保護に努めます。また、本ポリシーに従って個人情報を取り扱い、安全管理措置を講じます。万一、本ポリシーに反する重大な変更を行う場合には、法令に従い必要な手続きを履行いたします。</p>
+      <h4>2. 個人情報の取得方法</h4>
+      <p>当社は、お客様から個人情報を取得するにあたり、その利用目的をできる限り特定し、適正な手段で取得いたします。例えば、当社ウェブサイトのお問い合わせフォームへのご入力、お電話・Eメール等によるお問い合わせ、ご契約やサービスのお申込み等の場面で、お客様の氏名、住所、電話番号、メールアドレス等の連絡先情報や、お取引内容・履歴に関する情報などの個人情報を提供いただくことがあります。また、当社のグループ会社各社においてお客様が商品・サービスをご利用いただいた際に取得した個人情報が、必要に応じて当社に共有される場合があります。</p>
+      <h4>3. 個人情報の利用目的</h4>
+      <p>当社が取得したお客様の個人情報は、以下の目的で利用いたします。</p>
+      <p>・サービス提供および業務遂行のため<br>・お問い合わせ等への対応のため<br>・製品・サービスのご案内のため<br>・マーケティング分析・サービス改善のため<br>・法令遵守およびリスク管理のため<br>・上記各目的に付随する目的のため</p>
+      <p>当社は、取得した個人情報をこれら利用目的の範囲内で適切に利用し、利用目的を超えて利用することはいたしません。</p>
+      <h4>4. 個人データの安全管理措置</h4>
+      <p>当社は、お客様の個人データについて、漏えい、滅失または毀損の防止その他安全管理のために必要かつ適切な措置を講じます。具体的には、個人情報保護管理者の設置や社内規程の整備、全従業員・役員に対する定期的な教育研修の実施、個人情報を取り扱う部署における管理状況の定期点検等を行っております。</p>
+      <h4>5. 個人データの共同利用</h4>
+      <p>当社は、お客様の個人データをグループ会社間で共同利用する場合があります。共同利用の範囲は、当社および当社に100%出資する親会社（株式会社コアリスホールディングス）ならびに当該親会社が100%出資する子会社です。グループ会社の一覧については株式会社コアリスホールディングスのウェブサイトの「会社情報」ページにてご確認いただけます。</p>
+      <h4>6. 個人データの第三者提供</h4>
+      <p>当社は、お客様の個人データについて、ご本人の同意なく第三者に提供することは原則いたしません。ただし、法令に基づく場合、人の生命・身体・財産の保護のために必要な場合等はこの限りではありません。</p>
+      <h4>7. 保有個人データの開示等の請求手続</h4>
+      <p>当社が保有するお客様ご本人の個人データに関して、開示・内容の訂正・追加・削除、利用目的の通知、利用の停止・消去、第三者提供の停止などの請求があった場合には、個人情報保護法の定めに基づき誠実かつ迅速に対応いたします。開示等の請求に対する手数料は、1件あたり1,000円（税別）を申し受けます。</p>
+      <h4>8. お問い合わせ窓口</h4>
+      <p>株式会社コアリスホールディングス 個人情報お問い合わせ窓口<br>住所：〒460-0007 愛知県名古屋市中区新栄1丁目2-5 HARVEY 栄EAST 5F、6F<br>Eメール：privacy@coaris-hd.co.jp<br>（受付時間 平日9:00～17:00）</p>
+      <h4>9. プライバシーポリシーの変更手続</h4>
+      <p>当社は、本ポリシーの内容を必要に応じて見直し、改定することがあります。変更後のプライバシーポリシーの効力はウェブサイト上に掲載した時点または別途定める施行日時から生じるものとします。</p>
+      <p>制定日：2025年12月1日（施行）</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner"><div class="footer-company"><strong>TRIPOT</strong>トライポット株式会社<br>〒460-0007 愛知県名古屋市中区新栄1丁目2-5 HARVEY 栄EAST 6階</div><div class="footer-links"><a href="#" class="openPrivacyFooter">プライバシーポリシー</a><a href="#">会社概要</a></div></div>
+    <div class="footer-bottom"><p class="footer-copy">&copy; 2026 TRIPOT Inc. All Rights Reserved.</p></div>
+  </div>
+</footer>
+
+<!-- FLOATING CTA -->
+<div class="floating-cta" id="floatingCta"><a href="#contact">無料で相談する</a></div>
+
+<script>
+// FAQ
+document.querySelectorAll('.faq-question').forEach(b=>{b.addEventListener('click',()=>{const i=b.parentElement,a=i.querySelector('.faq-answer'),o=i.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(x=>{x.classList.remove('open');x.querySelector('.faq-answer').style.maxHeight='0'});if(!o){i.classList.add('open');a.style.maxHeight=a.scrollHeight+'px'}})});
+// Form
+document.getElementById('contactForm').addEventListener('submit',e=>{e.preventDefault();alert('お問い合わせありがとうございます。担当者より折り返しご連絡いたします。')});
+document.getElementById('openPrivacy').addEventListener('click',e=>{e.preventDefault();document.getElementById('ppModal').classList.add('open')});
+document.getElementById('closePrivacy').addEventListener('click',()=>{document.getElementById('ppModal').classList.remove('open')});
+document.getElementById('ppModal').addEventListener('click',e=>{if(e.target===e.currentTarget)e.currentTarget.classList.remove('open')});
+document.querySelector('.openPrivacyFooter').addEventListener('click',e=>{e.preventDefault();document.getElementById('ppModal').classList.add('open')});
+</script>
+</body>
+</html>
