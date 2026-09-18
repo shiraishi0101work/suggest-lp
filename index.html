@@ -3,9 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>サジェスト対策・検索候補の非表示対策 | トライポット株式会社</title>
-<meta name="description" content="Google・Yahoo!・Bingのネガティブなサジェスト・検索候補の非表示化をサポート。「会社名+ブラック」「会社名+詐欺」など、風評被害につながるサジェスト汚染でお困りの企業様へ。無料調査実施中。1検索キーワードあたり月額50,000円（税抜）／55,000円（税込）～。">
+<title>サジェスト対策・サジェスト汚染の非表示対策｜トライポット</title>
+<meta name="description" content="Google・Yahoo!・Bingのサジェスト汚染でお困りの法人様へ。会社名やサービス名に表示されるネガティブな検索候補の非表示対策を行います。サジェスト対策専門サービスが現在の表示状況を無料調査します。">
+<!-- TODO:本番公開時 - 以下のURLをすべて本番URLに変更すること -->
+<link rel="canonical" href="https://shiraishi0101work.github.io/suggest-lp/">
+<!-- OGP -->
+<meta property="og:title" content="サジェスト対策・サジェスト汚染の非表示対策｜トライポット">
+<meta property="og:description" content="Google・Yahoo!・Bingのサジェスト汚染でお困りの法人様へ。会社名やサービス名に表示されるネガティブな検索候補の非表示対策を行います。サジェスト対策専門サービスが現在の表示状況を無料調査します。">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://shiraishi0101work.github.io/suggest-lp/">
+<meta property="og:site_name" content="トライポット株式会社">
+<meta property="og:locale" content="ja_JP">
+<!-- TODO:本番公開時 - OGP画像を設定 -->
+<!-- <meta property="og:image" content="https://本番ドメイン/ogp-image.png"> -->
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="サジェスト対策・サジェスト汚染の非表示対策｜トライポット">
+<meta name="twitter:description" content="Google・Yahoo!・Bingのサジェスト汚染でお困りの法人様へ。ネガティブな検索候補の非表示対策を行います。無料調査実施中。">
+<!-- Preload: LCP hero image -->
+<link rel="preload" as="image" href="hero-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
@@ -119,8 +137,8 @@ ul{list-style:none}
 .about{padding:140px 0;background:linear-gradient(180deg,var(--white) 0%,var(--off-white) 100%)}
 .about-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:80px;align-items:center}
 .about-image .placeholder{aspect-ratio:4/3;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg)}
-.about-text h3{font-size:2.2rem;font-weight:900;color:var(--heading);margin-bottom:24px;line-height:1.45;letter-spacing:-.02em}
-.about-text h3 span{background:linear-gradient(135deg,var(--royal),var(--royal-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.about-text h2{font-size:2.2rem;font-weight:900;color:var(--heading);margin-bottom:24px;line-height:1.45;letter-spacing:-.02em}
+.about-text h2 span{background:linear-gradient(135deg,var(--royal),var(--royal-light));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .about-text p{font-size:1.05rem;color:var(--sub);line-height:2.2;margin-bottom:16px}
 .about-kw-group{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
 .about-kw{font-size:.82rem;font-weight:600;padding:10px 20px;border-radius:10px;border:1px solid}
@@ -395,9 +413,10 @@ ul{list-style:none}
 
   /* About / Risk / Solution */
   .about{padding:80px 0}.about-grid,.risk-grid,.sol-block,.sol-block.rev,.comp-grid,.contact-wrap{grid-template-columns:1fr;direction:ltr;gap:32px}
-  .about-text h3{font-size:1.6rem}
+  .about-text h2{font-size:1.6rem}
   .risk{padding:80px 0}
   .solution{padding:80px 0}.sol-text h3{font-size:1.5rem}
+  .sol-image{position:static}
   .sol-blocks{gap:64px}
 
   /* Trouble */
@@ -568,6 +587,74 @@ ul{list-style:none}
 }
 
 </style>
+<!-- 構造化データ: Organization, Service, BreadcrumbList -->
+<!-- TODO:本番公開時 - url / @id のURLを本番URLに変更 -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"Organization",
+      "@id":"https://shiraishi0101work.github.io/suggest-lp/#organization",
+      "name":"トライポット株式会社",
+      "alternateName":"TRIPOT Inc.",
+      "url":"https://shiraishi0101work.github.io/suggest-lp/",
+      "telephone":"052-881-2030",
+      "foundingDate":"2025-12",
+      "address":{
+        "@type":"PostalAddress",
+        "streetAddress":"新栄1丁目2-5 HARVEY 栄EAST 6階",
+        "addressLocality":"名古屋市中区",
+        "addressRegion":"愛知県",
+        "postalCode":"460-0007",
+        "addressCountry":"JP"
+      }
+    },
+    {
+      "@type":"Service",
+      "name":"サジェスト対策サービス",
+      "description":"Google・Yahoo!・Bingのサジェスト汚染・ネガティブな検索候補の非表示対策サービス。月額50,000円（税抜）から。",
+      "provider":{"@type":"Organization","name":"トライポット株式会社"},
+      "areaServed":{"@type":"Country","name":"JP"},
+      "serviceType":"サジェスト対策"
+    },
+    {
+      "@type":"BreadcrumbList",
+      "itemListElement":[
+        {"@type":"ListItem","position":1,"name":"サジェスト対策・サジェスト汚染の非表示対策","item":"https://shiraishi0101work.github.io/suggest-lp/"}
+      ]
+    }
+  ]
+}
+</script>
+<!-- 構造化データ: FAQPage -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"FAQPage",
+  "mainEntity":[
+    {"@type":"Question","name":"サジェストは本当に対策できるのですか?","acceptedAnswer":{"@type":"Answer","text":"検索エンジンのサジェストは、アルゴリズムによって表示されているため、適切な施策を行うことで非表示化できる可能性があります。ただし、検索エンジン側の仕様やキーワードの状況によって難易度は異なりますので、まずは無料調査で対策可能性をご確認ください。"}},
+    {"@type":"Question","name":"対策にはどのくらいの期間がかかりますか?","acceptedAnswer":{"@type":"Answer","text":"検索エンジンやキーワードの状況によって異なります。目安として、Yahoo!では最短3日～、Google・Bingでは1ヶ月～で成果が現れ始めるケースがあります。ただし、検索状況やキーワード、表示の背景などによって対策の難易度や期間は異なり、成果を保証するものではありません。具体的な見通しは無料調査の結果をもとにお伝えいたします。"}},
+    {"@type":"Question","name":"サジェストは必ず非表示になりますか?","acceptedAnswer":{"@type":"Answer","text":"検索エンジンのアルゴリズムは常に変動しているため、成果を保証することはできません。ただし、状況を確認した上で対策方針をご案内し、非表示化の可能性を最大限高める施策を実施いたします。対策が難しいと判断した場合は、その旨も正直にお伝えします。"}},
+    {"@type":"Question","name":"対策が難しいキーワードはありますか?","acceptedAnswer":{"@type":"Answer","text":"はい。キーワードの検索状況や表示されている背景によって、対策の難易度や成果が現れるまでの期間は異なります。特に、ニュース・報道などをきっかけに継続的に検索されているキーワードや、検索需要が高いキーワード、長期間表示されているキーワードなどは、通常より対策の難易度が高くなる場合があります。"}},
+    {"@type":"Question","name":"一度非表示にしても再表示されることはありますか?","acceptedAnswer":{"@type":"Answer","text":"再表示の可能性はゼロではありません。検索エンジンのアルゴリズム変動や外部要因により、再度表示されるケースがあります。そのため継続監視サービスをご用意しており、再発の兆候を検知した場合は速やかに追加対策を実施いたします。"}},
+    {"@type":"Question","name":"契約終了後に、対策したキーワードが再表示されることはありますか?","acceptedAnswer":{"@type":"Answer","text":"はい、再表示される可能性があります。サジェストは検索状況や検索需要などによって変動するため、一度非表示になったキーワードが将来的に再び表示される可能性があります。契約終了後も表示状況が気になる場合は、継続的な監視についてご相談いただけます。"}},
+    {"@type":"Question","name":"料金はいくらですか?","acceptedAnswer":{"@type":"Answer","text":"1検索キーワードあたり月額50,000円（税抜）／55,000円（税込）です。1つの検索キーワードに対して表示されている複数のネガティブなサジェストキーワードについても、料金内で複数対策可能です。実際の対策範囲は事前調査のうえ決定します。"}},
+    {"@type":"Question","name":"最低契約期間はありますか?","acceptedAnswer":{"@type":"Answer","text":"最低契約期間は1年間です。継続的に表示状況を確認しながら対策を行います。"}},
+    {"@type":"Question","name":"解約する場合はいつまでに連絡が必要ですか?","acceptedAnswer":{"@type":"Answer","text":"契約期間満了日の1ヶ月前までにご連絡ください。"}},
+    {"@type":"Question","name":"支払い方法・支払い日はいつですか?","acceptedAnswer":{"@type":"Answer","text":"お支払いは請求書払いとなります。対策を実施した月の翌月25日までにお支払いいただきます。"}},
+    {"@type":"Question","name":"どの時点で「成果」となりますか?","acceptedAnswer":{"@type":"Answer","text":"対策開始前に検索キーワード・対策対象キーワード・成果地点を確認し、事前に定めた対象の検索キーワードにおいて、対策対象となるサジェストキーワードが非表示になった時点を成果とします。検索状況等によって成果や成果が現れるまでの期間は異なります。"}},
+    {"@type":"Question","name":"どんな検索候補が対策の対象ですか?","acceptedAnswer":{"@type":"Answer","text":"「会社名+ブラック」「会社名+詐欺」「サービス名+悪質」「店舗名+最悪」など、企業活動に悪影響を与えるネガティブなサジェスト・関連キーワードが対象です。具体的に対策可能かどうかは、無料調査にて確認いたします。なお、本サービスはサジェスト対策専門です。誹謗中傷記事削除、SNS投稿削除などは対象外となります。"}},
+    {"@type":"Question","name":"Google以外の検索エンジンにも対応していますか?","acceptedAnswer":{"@type":"Answer","text":"はい、Google・Yahoo!・Bingの3大検索エンジンに対応しております。サジェストだけでなく、関連キーワード（Google関連キーワード、Yahoo!関連検索ワード、Bing関連語）についても対策可能です。"}},
+    {"@type":"Question","name":"契約後は具体的に何をするのですか?","acceptedAnswer":{"@type":"Answer","text":"まず対象キーワードの詳細な分析を行い、最適な対策プランを策定します。その後、専門チームが施策を実施し、定期的にレポートで進捗をご報告いたします。お客様側で特別な作業を行っていただく必要はありません。"}},
+    {"@type":"Question","name":"対策の成果はどうやって確認できますか?","acceptedAnswer":{"@type":"Answer","text":"定期レポートにて、対象キーワードのサジェスト表示状況の変化を数値・視覚的にご報告いたします。実際にご自身で検索して確認いただくこともできます。"}},
+    {"@type":"Question","name":"Googleのガイドラインに違反しませんか?","acceptedAnswer":{"@type":"Answer","text":"当社では不正な手法やペナルティリスクのある方法は使用せず、適切な手法で継続的に対策を行っております。安心してお任せください。"}},
+    {"@type":"Question","name":"他社で対策中ですが、乗り換えは可能ですか?","acceptedAnswer":{"@type":"Answer","text":"はい、可能です。現在の対策状況を確認した上で、スムーズに切り替え対応いたします。他社で効果が出なかったケースでも改善できる場合がありますので、お気軽にご相談ください。"}},
+    {"@type":"Question","name":"相談だけでも大丈夫ですか?","acceptedAnswer":{"@type":"Answer","text":"もちろんです。無料調査では現状の診断と対策方針のご案内を行います。ご契約を強制することはございません。「まず状況を知りたい」「対策できるか確認したい」というご相談だけでも歓迎です。"}},
+    {"@type":"Question","name":"相談内容や対策キーワードが外部に漏れることはありませんか?","acceptedAnswer":{"@type":"Answer","text":"ご安心ください。ご契約時には秘密保持契約（NDA）を締結し、ご相談内容や対策キーワード、企業情報などの機密情報を適切に管理いたします。"}}
+  ]
+}
+</script>
 </head>
 <body>
 
@@ -575,12 +662,13 @@ ul{list-style:none}
 <header class="header" id="header">
   <div class="container header-inner">
     <a href="#" class="logo">TRIPOT<small>トライポット株式会社</small></a>
-    <div class="header-right">
+    <nav class="header-right" aria-label="メインナビゲーション">
       <div class="header-tel"><span class="header-tel-note">お電話 平日10:00〜17:00</span><a href="tel:052-881-2030">052-881-2030</a></div>
       <a href="#contact" class="header-cta" id="cta-header" data-cta="header">お問い合わせ</a>
-    </div>
+    </nav>
   </div>
 </header>
+<main>
 
 <!-- HERO -->
 <section class="hero">
@@ -593,12 +681,12 @@ ul{list-style:none}
     <div class="hero-grid">
       <div class="hero-content ao">
 
-        <h1>会社名を検索すると<br><em>「やばい」「ブラック」「詐欺」</em>...<br>その検索候補、<br>私たちが非表示化します<span class="sub-line">サジェスト対策専門 / Google・Yahoo!・Bing 全対応</span></h1>
+        <h1>会社名を検索すると<br><em>「やばい」「ブラック」「詐欺」</em>...<br>そのサジェスト汚染、<br>私たちが非表示対策します<span class="sub-line">サジェスト対策専門 / Google・Yahoo!・Bing 全対応</span></h1>
         <p class="hero-sub">自社名・サービス名・店舗名を検索した際に表示されるネガティブな検索候補。<br>採用・営業・集客・ブランドイメージへの影響が心配な企業様に、<br>専門チームが対策方針をご案内します。</p>
         <div class="hero-stats">
           <div class="hero-stat"><div class="hero-stat-num" data-count="10000">10,000<small>社+</small></div><div class="hero-stat-label">風評対策 累計実績</div><div style="font-size:.6rem;color:rgba(27,58,92,.4);margin-top:4px">※グループ全体実績</div></div>
           <div class="hero-stat"><div class="hero-stat-num" data-count="90">90<small>%+</small></div><div class="hero-stat-label">非表示化達成率</div></div>
-          <div class="hero-stat"><div class="hero-stat-num">最短即日</div><div class="hero-stat-label">対策着手</div></div>
+          <div class="hero-stat"><div class="hero-stat-num">最短<br>即日</div><div class="hero-stat-label">対策着手</div></div>
         </div>
         <div class="hero-cta-group">
           <a href="#diagnostic" class="btn-cta" id="cta-fv" data-cta="fv">現在のサジェスト状況を無料で調査する</a>
@@ -749,10 +837,10 @@ ul{list-style:none}
   <div class="container">
     <div class="about-grid">
       <div class="about-image ao">
-        <img src="about-image.png" alt="サジェスト汚染の解説イメージ" style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:block">
+        <img src="about-image.png" alt="サジェスト汚染とは - 検索候補にネガティブワードが表示される仕組みの解説" loading="lazy" width="600" height="450" style="width:100%;height:auto;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:block">
       </div>
       <div class="about-text ao ao-d2">
-                <h3>そもそも<span>サジェスト汚染</span>とは?</h3>
+                <h2>そもそも<span>サジェスト汚染</span>とは?</h2>
         <p>サジェスト汚染とは、GoogleやYahoo!などの検索エンジンで企業名やサービス名を入力した際に、検索候補（サジェスト）にネガティブなキーワードが表示される現象です。</p>
         <p>一度表示され始めると検索エンジンの学習機能によって定着しやすく、採用・売上・信用に影響を与える可能性があります。早めの状況確認と対策の検討が重要です。</p>
         <div class="about-kw-group">
@@ -769,15 +857,15 @@ ul{list-style:none}
     <div class="text-center"><h2 class="sec-title ao">こんなことで<span class="em">お困り</span>ではないですか?</h2><p class="sec-lead ao">サジェスト汚染は、気づかないうちに企業活動のさまざまな場面に影響を与えることがあります。</p></div>
     <div class="trouble-grid">
       <div class="trouble-card ao">
-        <img src="trouble-03.png" alt="経営者イメージ" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block">
+        <img src="trouble-03.png" alt="サジェスト汚染に悩む企業経営者のイメージ" loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block">
         <div class="trouble-card-body"><p class="trouble-num">CASE 01</p><h3>会社名を検索すると「ブラック」「詐欺」が表示される</h3><p>検索候補にネガティブワードが表示され、取引先・顧客・求職者に悪印象を与え、ビジネスチャンスを逃してしまう。</p><div class="trouble-tag"><span class="dot"></span>IT企業 / 経営者</div></div>
       </div>
       <div class="trouble-card ao ao-d1">
-        <img src="trouble-02.png" alt="採用担当イメージ" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block">
+        <img src="trouble-02.png" alt="ネガティブサジェストの影響を受ける採用担当のイメージ" loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block">
         <div class="trouble-card-body"><p class="trouble-num">CASE 02</p><h3>採用活動に悪影響が出ている</h3><p>求職者が応募前に社名を検索し、ネガティブサジェストを目にして辞退。内定承諾率が下がり、優秀な人材を逃してしまう。</p><div class="trouble-tag"><span class="dot"></span>人材派遣 / 人事担当</div></div>
       </div>
       <div class="trouble-card ao ao-d2">
-        <img src="trouble-03-new.png" alt="営業担当イメージ" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block">
+        <img src="trouble-03-new.png" alt="サジェスト汚染により売上が減少した企業の営業担当イメージ" loading="lazy" style="width:100%;aspect-ratio:4/3;object-fit:cover;display:block">
         <div class="trouble-card-body"><p class="trouble-num">CASE 03</p><h3>売上・問い合わせ数が減少している</h3><p>サービスを検討中の見込み客がサジェストのネガティブ情報を見て離脱。CVRが低下し、広告費だけが消化されていく。</p><div class="trouble-tag"><span class="dot"></span>不動産 / 代表取締役</div></div>
       </div>
     </div>
@@ -787,10 +875,10 @@ ul{list-style:none}
 <!-- RISK -->
 <section class="risk">
   <div class="container">
-    <div class="text-center"><h2 class="sec-title ao">放置すると<span class="gd">対策が難しくなる可能性があります</span></h2><p class="sec-lead ao">サジェスト汚染は時間が経つほど定着しやすく、早めの対応が効果的です。</p></div>
+    <div class="text-center"><h2 class="sec-title ao">サジェスト汚染を放置すると<span class="gd">対策が難しくなる可能性があります</span></h2><p class="sec-lead ao">サジェスト汚染は時間が経つほど定着しやすく、早めの対応が効果的です。</p></div>
     <div class="risk-grid">
       <div class="risk-image ao">
-        <img src="risk-image.png" alt="リスクイメージ" style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:block">
+        <img src="risk-image.png" alt="サジェスト汚染を放置した場合のビジネスリスク" loading="lazy" style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:block">
       </div>
       <div class="risk-content">
         <div class="risk-list">
@@ -818,7 +906,7 @@ ul{list-style:none}
     <div class="text-center"><h2 class="sec-title ao">トライポットの<span class="em">サジェスト対策サービス</span></h2><p class="sec-lead ao">サジェスト対策を専門とするからこそ、非表示化から継続監視まで一貫して対応します。</p></div>
     <div class="sol-blocks">
       <div class="sol-block ao">
-        <div class="sol-image"><img src="solution-01.png" alt="サジェスト対策サービスイメージ" style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:block"></div>
+        <div class="sol-image"><img src="solution-01.png" alt="Google・Yahoo!・Bingのサジェスト非表示対策サービス" loading="lazy" style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:block"></div>
         <div class="sol-text"><p class="sol-num">SERVICE 01</p><h3>サジェスト・関連キーワード<br>非表示対策</h3><p>GoogleやYahoo!で自社名を入力した際に表示される「ブラック」「詐欺」「やばい」などのネガティブな検索候補を非表示化します。検索候補だけでなく、検索結果ページ下部に表示される関連キーワードも対策対象です。</p><p>ネガティブワードが表示され続ける限り、検索するすべてのユーザーの目に触れ、ネガティブな情報サイトへの流入を増やしてしまいます。非表示化することで、ブランドイメージの毀損を防ぎ、本来の企業評価での判断を促します。</p><div class="sol-targets"><span class="sol-target">Google サジェスト</span><span class="sol-target">Yahoo! サジェスト</span><span class="sol-target">Bing サジェスト</span><span class="sol-target">Google 関連キーワード</span><span class="sol-target">Yahoo! 関連検索ワード</span><span class="sol-target">Bing 関連語</span></div><ul class="sol-features"><li>Google・Yahoo!・Bing全検索エンジンに対応</li><li>サジェストと関連キーワードの両方を対策</li><li>対策状況を定期レポートで見える化</li><li>適切な手法で継続的に対策</li></ul>
 <div style="margin-top:24px;padding:20px 24px;background:var(--off-white);border-radius:var(--radius)">
 <p style="font-size:.9rem;font-weight:700;color:var(--heading);margin-bottom:14px">成果が現れるまでの目安</p>
@@ -831,7 +919,7 @@ ul{list-style:none}
 </div></div>
       </div>
       <div class="sol-block rev ao">
-        <div class="sol-image"><img src="solution-02.png" alt="サジェスト監視・再発防止サービスイメージ" style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:block"></div>
+        <div class="sol-image"><img src="solution-02.png" alt="サジェスト監視・再発防止の継続サポートサービス" loading="lazy" style="width:100%;border-radius:var(--radius-lg);box-shadow:var(--shadow-lg);display:block"></div>
         <div class="sol-text"><p class="sol-num">SERVICE 02</p><h3>サジェスト監視・<br>再発防止サービス</h3><p>サジェスト汚染は一度対策しても、検索エンジンのアルゴリズム変動や外部要因によって再表示されることがあります。対策完了後も継続的にサジェストの表示状況を監視し、再汚染の兆候を検知した場合は迅速に追加対策を実施します。</p><p>「対策したのにまた表示された」という事態を防ぐためのサービスです。お客様が安心して本業に集中できるよう、サジェストの状況を当社が常に見守ります。</p><ul class="sol-features"><li>継続的な自動監視体制で再発を早期検知</li><li>月次レポートで対策効果と現状を数値で報告</li><li>契約期間中、同一の検索キーワードで対策対象となるサジェストが再表示された場合はご契約プランの範囲内で対応</li><li>専任担当者が状況に応じた対策プランをご提案</li><li>検索エンジンのアルゴリズム変動にも柔軟に対応</li></ul></div>
       </div>
     </div>
@@ -841,7 +929,7 @@ ul{list-style:none}
 <!-- BEFORE/AFTER -->
 <section class="ba" id="ba">
   <div class="container">
-    <div class="text-center"><h2 class="sec-title ao">導入事例</h2><p class="sec-lead ao">実際にご依頼いただいたお客様の事例をご紹介します。</p></div>
+    <div class="text-center"><h2 class="sec-title ao">サジェスト対策の導入事例</h2><p class="sec-lead ao">実際にご依頼いただいたお客様の事例をご紹介します。</p></div>
     <div class="ba-cases">
 
       <!-- CASE 01 -->
@@ -873,7 +961,7 @@ ul{list-style:none}
         <div style="display:flex;gap:0;border-bottom:1px solid var(--border)">
           <div style="flex:1;text-align:center;padding:20px 12px;border-right:1px solid var(--border)"><div style="font-family:'Poppins',sans-serif;font-size:1.6rem;font-weight:900;color:var(--royal)">6<small style="font-size:.7rem;font-weight:700">KW</small></div><div style="font-size:.72rem;color:var(--sub);margin-top:4px">対策キーワード数</div></div>
           <div style="flex:1;text-align:center;padding:20px 12px;border-right:1px solid var(--border)"><div style="font-family:'Poppins',sans-serif;font-size:1.6rem;font-weight:900;color:var(--royal)">8<small style="font-size:.7rem;font-weight:700">ヶ月～</small></div><div style="font-size:.72rem;color:var(--sub);margin-top:4px">継続中</div></div>
-          <div style="flex:1;text-align:center;padding:20px 12px"><div style="font-size:1.1rem;font-weight:900;color:var(--royal)">月額15万円</div><div style="font-size:.72rem;color:var(--sub);margin-top:4px">税抜 ／ 税込165,000円</div></div>
+          <div style="flex:1;text-align:center;padding:20px 12px"><div style="font-size:1.1rem;font-weight:900;color:var(--royal)">月額30万円</div><div style="font-size:.72rem;color:var(--sub);margin-top:4px">税抜 ／ 税込330,000円</div></div>
         </div>
         <div style="padding:28px 32px">
           <h4 style="font-size:1.05rem;font-weight:700;color:var(--heading);margin-bottom:16px">複数のネガティブワードを段階的に対策</h4>
@@ -946,13 +1034,13 @@ ul{list-style:none}
   <div class="container text-center">
     <h2 class="sec-title ao">トライポットが<span class="em">選ばれる5つの理由</span></h2><p class="sec-lead ao">サジェスト対策の専門サービスとして、選ばれ続ける理由があります。</p>
     <div class="str-grid">
-      <div class="str-card ao"><p class="str-card-num">POINT 01</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="speed-image.png" alt="迅速なスピード対応" style="width:100%;height:100%;object-fit:cover"></div><h3>迅速なスピード対応</h3><p>ご契約および対策内容の確定後、最短即日で対策を開始いたします。</p></div>
-      <div class="str-card ao ao-d1"><p class="str-card-num">POINT 02</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="free-consultation-image.png" alt="調査・ご相談は完全無料" style="width:100%;height:100%;object-fit:cover"></div><h3>調査・ご相談は完全無料</h3><p>施策以外に費用はいただきません。無料で汚染状況を調査し最適なプランをご提案。</p></div>
-      <div class="str-card ao ao-d2"><p class="str-card-num">POINT 03</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="visibility-image.png" alt="対策状況の見える化" style="width:100%;height:100%;object-fit:cover"></div><h3>対策状況の見える化</h3><p>対策の進捗状況を確認できるレポートをご提供。施策内容を具体的にご説明します。</p></div>
+      <div class="str-card ao"><p class="str-card-num">POINT 01</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="speed-image.png" alt="最短即日のスピード対応" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div><h3>迅速なスピード対応</h3><p>ご契約および対策内容の確定後、最短即日で対策を開始いたします。</p></div>
+      <div class="str-card ao ao-d1"><p class="str-card-num">POINT 02</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="free-consultation-image.png" alt="サジェスト汚染の調査・ご相談は完全無料" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div><h3>調査・ご相談は完全無料</h3><p>施策以外に費用はいただきません。無料で汚染状況を調査し最適なプランをご提案。</p></div>
+      <div class="str-card ao ao-d2"><p class="str-card-num">POINT 03</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="visibility-image.png" alt="対策状況の見える化レポート" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div><h3>対策状況の見える化</h3><p>対策の進捗状況を確認できるレポートをご提供。施策内容を具体的にご説明します。</p></div>
     </div>
     <div class="str-last">
-      <div class="str-card ao"><p class="str-card-num">POINT 04</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="algorithm-image.png" alt="アルゴリズム変動に柔軟対応" style="width:100%;height:100%;object-fit:cover"></div><h3>アルゴリズム変動に柔軟対応</h3><p>検索エンジンの仕様変化に迅速に対応し、常に最新の技術で対策を維持します。</p></div>
-      <div class="str-card ao ao-d1"><p class="str-card-num">POINT 05</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="branding-support-image.png" alt="サジェスト対策の専門知識で一貫サポート" style="width:100%;height:100%;object-fit:cover"></div><h3>専門知識を活かした一貫サポート</h3><p>サジェスト対策の専門サービスとして、非表示化だけでなく再発防止・監視まで一貫して対応します。</p></div>
+      <div class="str-card ao"><p class="str-card-num">POINT 04</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="algorithm-image.png" alt="検索エンジンのアルゴリズム変動に柔軟対応" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div><h3>アルゴリズム変動に柔軟対応</h3><p>検索エンジンの仕様変化に迅速に対応し、常に最新の技術で対策を維持します。</p></div>
+      <div class="str-card ao ao-d1"><p class="str-card-num">POINT 05</p><div style="aspect-ratio:3/2;border-radius:var(--radius);overflow:hidden"><img src="branding-support-image.png" alt="非表示化から再発防止まで一貫した専門サポート" loading="lazy" style="width:100%;height:100%;object-fit:cover"></div><h3>専門知識を活かした一貫サポート</h3><p>サジェスト対策の専門サービスとして、非表示化だけでなく再発防止・監視まで一貫して対応します。</p></div>
     </div>
   </div>
 </section>
@@ -1055,7 +1143,7 @@ ul{list-style:none}
 <!-- FLOW -->
 <section class="flow">
   <div class="container">
-    <div class="text-center"><h2 class="sec-title ao">ご利用の<span class="em">流れ</span></h2><p class="sec-lead ao">お問い合わせから対策完了まで、シンプルな5ステップで進行します。</p></div>
+    <div class="text-center"><h2 class="sec-title ao">サジェスト対策ご利用の<span class="em">流れ</span></h2><p class="sec-lead ao">お問い合わせから対策完了まで、シンプルな5ステップで進行します。</p></div>
     <div class="flow-steps">
       <div class="flow-step ao"><div class="flow-num">01</div><div class="flow-content"><h3>お問い合わせ・無料調査依頼</h3><p>フォームまたはお電話よりお問い合わせください。対象キーワードだけのご相談でも受け付けています。</p><span class="flow-tag">無料</span></div></div>
       <div class="flow-step ao"><div class="flow-num">02</div><div class="flow-content"><h3>担当者よりご連絡・ヒアリング</h3><p>お問い合わせ内容を確認のうえ、担当者より3営業日以内にご連絡いたします。現状のお悩みを丁寧にヒアリングいたします。</p><span class="flow-tag">3営業日以内にご連絡</span></div></div>
@@ -1158,7 +1246,7 @@ ul{list-style:none}
                 <h2>無料調査・<br>お問い合わせ</h2>
         <p>「会社名を検索したらネガティブワードが出てきた」<br>「対策できるか分からないけど、まず相談したい」<br><br>そんな段階でも大丈夫です。<br>対象キーワードをお伝えいただくだけで、現在のサジェスト状況を無料で調査いたします。</p>
         <div class="contact-image">
-<img src="contact-image.png" alt="無料相談・お問い合わせ" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow-md)">
+<img src="contact-image.png" alt="サジェスト対策の無料調査・お問い合わせ" loading="lazy" style="width:100%;border-radius:var(--radius);box-shadow:var(--shadow-md)">
         </div>
       </div>
       <div class="contact-box ao ao-d2" id="contact-form-area">
@@ -1212,6 +1300,7 @@ ul{list-style:none}
   </div>
 </div>
 
+</main>
 <!-- FOOTER -->
 <footer class="footer">
   <div class="container">
@@ -1359,5 +1448,29 @@ document.getElementById('ppModal').addEventListener('click',e=>{if(e.target===e.
 document.querySelector('.openPrivacyFooter').addEventListener('click',e=>{e.preventDefault();document.getElementById('ppModal').classList.add('open')});
 document.querySelector('.openPrivacyDiag').addEventListener('click',e=>{e.preventDefault();document.getElementById('ppModal').classList.add('open')});
 </script>
+<!--
+====================================
+本番公開時SEOチェックリスト
+====================================
+□ 本番URLを確定
+□ <link rel="canonical"> を本番URLへ変更
+□ og:url を本番URLへ変更
+□ og:image を設定（1200x630px推奨、絶対URL）
+□ twitter:image を設定
+□ 構造化データ内の全URL(@id, url, item)を本番URLへ変更
+□ sitemap.xml を本番URLで生成・設置
+□ robots.txt を確認（重要ページをブロックしていないこと）
+□ noindex が残っていないことを確認
+□ 内部リンク確認（アンカーリンク・ページ内遷移）
+□ 404確認（画像・CSS・JS含む）
+□ Google Search Console へ本番サイトを登録
+□ Search Console から sitemap.xml を送信
+□ URL検査でインデックス可能か確認
+□ Core Web Vitals 確認（PageSpeed Insights）
+□ OGPデバッガーで表示確認
+□ リッチリザルトテストで構造化データ検証
+□ モバイルフレンドリーテスト実施
+====================================
+-->
 </body>
 </html>
