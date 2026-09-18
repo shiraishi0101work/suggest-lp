@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>サジェスト対策 専門用語辞典｜トライポット</title>
+<meta name="description" content="サジェスト対策や風評対策、検索エンジンに関する専門用語を分かりやすく解説します。サジェスト汚染への対応を検討する際に知っておきたい用語をまとめています。">
+<!-- TODO:本番公開時 - 以下のURLをすべて本番URLに変更すること -->
+<link rel="canonical" href="https://shiraishi0101work.github.io/suggest-lp/glossary/">
+<!-- OGP -->
+<meta property="og:title" content="サジェスト対策 専門用語辞典｜トライポット">
+<meta property="og:description" content="サジェスト対策や風評対策、検索エンジンに関する専門用語を分かりやすく解説します。サジェスト汚染への対応を検討する際に知っておきたい用語をまとめています。">
+<meta property="og:type" content="website">
+<!-- TODO:本番公開時 - og:urlを本番URLに変更 -->
+<meta property="og:url" content="https://shiraishi0101work.github.io/suggest-lp/glossary/">
+<meta property="og:site_name" content="トライポット株式会社">
+<meta property="og:locale" content="ja_JP">
+<!-- TODO:本番公開時 - OGP画像を設定 -->
+<!-- <meta property="og:image" content="https://本番ドメイン/glossary/ogp-image.png"> -->
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="サジェスト対策 専門用語辞典｜トライポット">
+<meta name="twitter:description" content="サジェスト対策や風評対策、検索エンジンに関する専門用語を分かりやすく解説します。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+<!-- BreadcrumbList JSON-LD -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "TOP",
+      "item": "../"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "専門用語辞典"
+    }
+  ]
+}
+</script>
+
+<style>
+:root{
+  --navy:#242424;--royal:#009ee3;--royal-light:#33b5eb;
+  --gold:#45a58e;--gold-light:#5fbda6;
+  --cta:#e33900;--cta-hover:#c93000;
+  --white:#FFFFFF;--off-white:#f9fafb;--light-blue:#edf3ff;--pale-blue:#e0ecfa;
+  --heading:#242424;--body:#3A3F4B;--sub:#757575;--muted:#9CA3AF;
+  --border:rgba(36,36,36,.08);--glass:rgba(255,255,255,.55);--glass-border:rgba(255,255,255,.25);
+  --shadow-sm:0 1px 3px rgba(0,0,0,.04);--shadow-md:0 8px 32px rgba(0,0,0,.06);--shadow-lg:0 20px 60px rgba(0,0,0,.08);
+  --radius:16px;--radius-lg:24px;
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Noto Sans JP','Poppins',sans-serif;color:var(--body);line-height:1.9;background:var(--white);-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent}
+a{text-decoration:none;color:inherit}
+ul{list-style:none}
+.container{max-width:1200px;margin:0 auto;padding:0 32px}
+
+/* ===== HEADER ===== */
+.header{position:fixed;top:0;left:0;width:100%;z-index:1000;padding:16px 0;background:rgba(255,255,255,.72);backdrop-filter:blur(20px);border-bottom:1px solid rgba(36,36,36,.06);transition:padding .3s}
+.header.scrolled{padding:10px 0}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Poppins',sans-serif;font-weight:800;font-size:1.4rem;color:var(--navy);letter-spacing:-.02em}
+.logo small{display:block;font-family:'Noto Sans JP',sans-serif;font-size:.58rem;font-weight:400;color:var(--sub)}
+.header-right{display:flex;align-items:center;gap:24px}
+.header-tel{text-align:right}
+.header-tel-note{font-size:.56rem;color:var(--muted);display:block}
+.header-tel a{font-family:'Poppins',sans-serif;font-size:1rem;font-weight:700;color:var(--navy)}
+.header-cta{display:inline-block;background:linear-gradient(135deg,var(--cta),#ff5733);color:#fff;font-size:.78rem;font-weight:700;padding:10px 28px;border-radius:50px;box-shadow:0 4px 16px rgba(227,57,0,.2);transition:opacity .3s}
+.header-cta:hover{opacity:.85}
+
+/* ===== BREADCRUMB ===== */
+.breadcrumb{padding:100px 0 0;background:var(--off-white)}
+.breadcrumb-list{display:flex;align-items:center;gap:8px;font-size:.78rem;color:var(--muted);flex-wrap:wrap}
+.breadcrumb-list a{color:var(--sub);transition:color .3s}
+.breadcrumb-list a:hover{color:var(--royal)}
+.breadcrumb-sep{color:var(--muted);font-size:.65rem}
+
+/* ===== PAGE TITLE ===== */
+.page-title-area{padding:48px 0 56px;background:var(--off-white);border-bottom:1px solid var(--border)}
+.page-title-area h1{font-size:2rem;font-weight:900;color:var(--heading);line-height:1.5;letter-spacing:-.02em;margin-bottom:12px}
+.page-title-desc{font-size:.95rem;color:var(--sub);line-height:2;max-width:720px}
+
+/* ===== GLOSSARY LIST ===== */
+.glossary-section{padding:64px 0 80px;background:var(--white)}
+.glossary-group{margin-bottom:40px}
+.glossary-group:last-child{margin-bottom:0}
+.glossary-group-label{display:inline-block;font-size:.75rem;font-weight:700;color:var(--royal);background:rgba(0,158,227,.08);border:1px solid rgba(0,158,227,.15);padding:4px 16px;border-radius:50px;margin-bottom:16px}
+.glossary-item{display:flex;align-items:center;justify-content:space-between;padding:20px 0;border-bottom:1px solid var(--border)}
+.glossary-item:first-of-type{border-top:1px solid var(--border)}
+.glossary-term{font-size:1rem;font-weight:600;color:var(--heading);transition:color .3s}
+.glossary-arrow{flex-shrink:0;width:28px;height:28px;display:flex;align-items:center;justify-content:center}
+.glossary-arrow svg{width:12px;height:12px;stroke:var(--muted);stroke-width:2;fill:none;transition:stroke .3s}
+a.glossary-link{display:block;text-decoration:none;color:inherit}
+a.glossary-link:hover .glossary-term{color:var(--royal)}
+a.glossary-link:hover .glossary-arrow svg{stroke:var(--royal)}
+
+/* ===== FOOTER ===== */
+.footer{padding:52px 0 28px;background:var(--navy);color:rgba(255,255,255,.4)}
+.footer-inner{display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:24px}
+.footer-company{font-size:.82rem;line-height:2}
+.footer-company strong{color:#fff;font-size:.95rem;display:block;margin-bottom:4px;font-family:'Poppins',sans-serif;font-weight:700}
+.footer-links{display:flex;gap:28px;flex-wrap:wrap}
+.footer-links a{font-size:.78rem;transition:color .3s}
+.footer-links a:hover{color:var(--gold)}
+.footer-links .is-current{color:rgba(255,255,255,.2);pointer-events:none}
+.footer-bottom{margin-top:28px;padding-top:20px;border-top:1px solid rgba(255,255,255,.06);text-align:center}
+.footer-copy{font-family:'Poppins',sans-serif;font-size:.68rem;color:rgba(255,255,255,.2)}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:768px){
+  .container{padding:0 20px}
+  .header{padding:12px 0}
+  .header-tel{display:none}
+  .logo{font-size:1.2rem}
+  .logo small{font-size:.52rem}
+  .header-cta{font-size:.72rem;padding:8px 20px}
+  .breadcrumb{padding:80px 0 0}
+  .breadcrumb-list{font-size:.72rem}
+  .page-title-area{padding:32px 0 40px}
+  .page-title-area h1{font-size:1.5rem}
+  .page-title-desc{font-size:.88rem}
+  .glossary-section{padding:40px 0 56px}
+  .glossary-group{margin-bottom:32px}
+  .glossary-item{padding:16px 0}
+  .glossary-term{font-size:.92rem}
+  .glossary-arrow{display:none}
+  .footer-inner{flex-direction:column;text-align:center}
+  .footer-links{justify-content:center}
+  .footer-company{font-size:.75rem}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="../" class="logo">TRIPOT<small>トライポット株式会社</small></a>
+    <nav class="header-right" aria-label="メインナビゲーション">
+      <div class="header-tel"><span class="header-tel-note">お電話 平日10:00〜17:00</span><a href="tel:052-881-2030">052-881-2030</a></div>
+      <a href="../#contact" class="header-cta">お問い合わせ</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<!-- BREADCRUMB -->
+<nav class="breadcrumb" aria-label="パンくずリスト">
+  <div class="container">
+    <ol class="breadcrumb-list">
+      <li><a href="../">TOP</a></li>
+      <li class="breadcrumb-sep" aria-hidden="true">&gt;</li>
+      <li aria-current="page">専門用語辞典</li>
+    </ol>
+  </div>
+</nav>
+
+<!-- PAGE TITLE -->
+<section class="page-title-area">
+  <div class="container">
+    <h1>サジェスト対策 専門用語辞典</h1>
+    <p class="page-title-desc">サジェスト対策や風評対策、検索エンジンに関する専門用語を分かりやすく解説します。サジェスト汚染への対応を検討する際に知っておきたい用語をまとめています。</p>
+  </div>
+</section>
+
+<!-- GLOSSARY LIST -->
+<section class="glossary-section">
+  <div class="container">
+
+    <!-- あ行 -->
+    <div class="glossary-group">
+      <div class="glossary-group-label">あ行</div>
+      <a href="autocomplete/" class="glossary-link">
+        <div class="glossary-item">
+          <span class="glossary-term">オートコンプリート</span>
+          <span class="glossary-arrow"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </div>
+      </a>
+    </div>
+
+    <!-- か行 -->
+    <div class="glossary-group">
+      <div class="glossary-group-label">か行</div>
+      <a href="related-keywords/" class="glossary-link">
+        <div class="glossary-item">
+          <span class="glossary-term">関連キーワード</span>
+          <span class="glossary-arrow"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </div>
+      </a>
+      <a href="search-engine/" class="glossary-link">
+        <div class="glossary-item">
+          <span class="glossary-term">検索エンジン</span>
+          <span class="glossary-arrow"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </div>
+      </a>
+      <a href="search-query/" class="glossary-link">
+        <div class="glossary-item">
+          <span class="glossary-term">検索クエリ</span>
+          <span class="glossary-arrow"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </div>
+      </a>
+      <a href="search-suggestions/" class="glossary-link">
+        <div class="glossary-item">
+          <span class="glossary-term">検索候補</span>
+          <span class="glossary-arrow"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </div>
+      </a>
+    </div>
+
+    <!-- さ行 -->
+    <div class="glossary-group">
+      <div class="glossary-group-label">さ行</div>
+      <a href="suggest/" class="glossary-link">
+        <div class="glossary-item">
+          <span class="glossary-term">サジェスト</span>
+          <span class="glossary-arrow"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </div>
+      </a>
+      <a href="suggest-pollution/" class="glossary-link">
+        <div class="glossary-item">
+          <span class="glossary-term">サジェスト汚染</span>
+          <span class="glossary-arrow"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </div>
+      </a>
+      <a href="suggest-countermeasure/" class="glossary-link">
+        <div class="glossary-item">
+          <span class="glossary-term">サジェスト対策</span>
+          <span class="glossary-arrow"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </div>
+      </a>
+    </div>
+
+    <!-- な行 -->
+    <div class="glossary-group">
+      <div class="glossary-group-label">な行</div>
+      <a href="negative-keyword/" class="glossary-link">
+        <div class="glossary-item">
+          <span class="glossary-term">ネガティブキーワード</span>
+          <span class="glossary-arrow"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </div>
+      </a>
+    </div>
+
+    <!-- は行 -->
+    <div class="glossary-group">
+      <div class="glossary-group-label">は行</div>
+      <a href="reputational-damage/" class="glossary-link">
+        <div class="glossary-item">
+          <span class="glossary-term">風評被害</span>
+          <span class="glossary-arrow"><svg viewBox="0 0 24 24"><polyline points="9 6 15 12 9 18"/></svg></span>
+        </div>
+      </a>
+    </div>
+
+  </div>
+</section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-inner">
+      <div class="footer-company"><strong>TRIPOT</strong>トライポット株式会社<br>〒460-0007 愛知県名古屋市中区新栄1丁目2-5 HARVEY 栄EAST 6階</div>
+      <div class="footer-links">
+        <a href="../">サジェスト対策サービス</a>
+        <a href="../column/">お役立ちコラム</a>
+        <span class="is-current">専門用語辞典</span>
+        <!-- TODO:本番公開時 - プライバシーポリシーページURLを設定 -->
+        <a href="../#privacy">プライバシーポリシー</a>
+      </div>
+    </div>
+    <div class="footer-bottom"><p class="footer-copy">&copy; 2026 TRIPOT Inc. All Rights Reserved.</p></div>
+  </div>
+</footer>
+
+<!-- Header scroll effect -->
+<script>
+(function(){
+  var h=document.getElementById('header');
+  if(!h)return;
+  window.addEventListener('scroll',function(){
+    h.classList.toggle('scrolled',window.scrollY>40);
+  },{passive:true});
+})();
+</script>
+
+</body>
+</html>
